@@ -29,33 +29,12 @@ img {
 .spinningButton {
     position: absolute;
     top: 12%;
-    left: 20%;
+    left: 23%;
     width: 5.5%;       /* ποσοστιαίο μέγεθος σε σχέση με το πλάτος της εικόνας */
-    aspect-ratio: 1 / 1; /* κρατάει το κουμπί πάντα τέλειο κύκλο */
     min-width: 24px;    /* να μη γίνεται αόρατο σε πολύ στενές οθόνες */
     max-width: 70px;    /* να μη γιγαντώνεται σε πολύ φαρδιές οθόνες */
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #f7e3ec, #e3b8cd 55%, #c77d9c 100%);
-    box-shadow:
-            0 4px 10px rgba(150, 80, 115, 0.35),
-            inset 0 2px 4px rgba(255, 255, 255, 0.6),
-            inset 0 -3px 6px rgba(150, 80, 115, 0.3);
     animation: spinButton 6s linear infinite;
 }
-
-.spinningButton .hole {
-    position: absolute;
-    width: 10%;
-    height: 10%;
-    border-radius: 50%;
-    background: #8a4a68;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.holeTL { top: 32%; left: 32%; }
-.holeTR { top: 32%; right: 32%; }
-.holeBL { bottom: 32%; left: 32%; }
-.holeBR { bottom: 32%; right: 32%; }
 
 @keyframes spinButton {
     from { transform: rotate(0deg); }
@@ -65,8 +44,8 @@ img {
 /* 9. Βελόνα με κλωστή δίπλα στο κουμπί - απαλό κούνημα σαν να αιωρείται */
 .needleThread {
     position: absolute;
-    top: 9%;
-    left: 27%;          /* ακριβώς δίπλα στο κουμπί (που είναι στο 20%) */
+    top: 71%;
+    left: 67%;          /* ακριβώς δίπλα στο κουμπί (που είναι στο 20%) */
     width: 6%;
     height: auto;
     aspect-ratio: 1 / 1;
