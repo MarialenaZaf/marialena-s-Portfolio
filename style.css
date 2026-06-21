@@ -25,14 +25,16 @@ img {
 }
 
 
-/* 8. Διακοσμητικό κουμπί ραπτικής που γυρίζει συνέχεια */
+/* 8. φιογκος */
 .spinningButton {
     position: absolute;
-    top: 12%;
-    left: 23%;
+    top: 10%;
+    left: 22%;
     width: 5.5%;       /* ποσοστιαίο μέγεθος σε σχέση με το πλάτος της εικόνας */
+    height: auto;
     min-width: 24px;    /* να μη γίνεται αόρατο σε πολύ στενές οθόνες */
     max-width: 70px;    /* να μη γιγαντώνεται σε πολύ φαρδιές οθόνες */
+    filter: drop-shadow(2px 3px 3px rgba(150, 80, 115, 0.35));
     animation: spinButton 6s linear infinite;
 }
 
@@ -44,7 +46,7 @@ img {
 /* 9. Βελόνα με κλωστή δίπλα στο κουμπί - απαλό κούνημα σαν να αιωρείται */
 .needleThread {
     position: absolute;
-    top: 71%;
+    top: 69%;
     left: 67%;          /* ακριβώς δίπλα στο κουμπί (που είναι στο 20%) */
     width: 6%;
     height: auto;
@@ -66,4 +68,43 @@ img {
     position: relative;
     width: 100%;
     line-height: 0;
+}
+
+
+/* 11. Κυματιστή ραφή στην αριστερή πλευρά της σελίδας - απαλό "παλμικό" animation */
+.stitchLine {
+    position: absolute;
+    top: 0;
+    left: 16%;
+    width: 50px;
+    height: 85%;
+    pointer-events: none;
+    filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+.stitchPath {
+    animation: stitchMarch 1.5s linear infinite;
+}
+
+.stitchNeedle {
+    animation: stitchNeedleWiggle 1.3s ease-in-out infinite;
+    transform-origin: 30px 145px;
+    transform-box: fill-box;
+}
+
+@keyframes stitchMarch {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -36; }
+}
+
+@keyframes stitchNeedleWiggle {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
+}
+
+@media (max-width: 600px) {
+    .stitchLine {
+        width: 32px;
+        left: 14%;
+    }
 }
