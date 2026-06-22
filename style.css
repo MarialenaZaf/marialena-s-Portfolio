@@ -216,17 +216,17 @@ img {
     justify-content: center;
     align-items: center;
 
-    width: min(90%, 450px);
+    /* Το 380px θα κάνει τη φόρμα να φαίνεται πιο "κομψή" και όχι τόσο απλωμένη */
+    width: min(90%, 380px);
     z-index: 20;
 }
-
 
 .contact-form {
     display: flex;
     flex-direction: column;
     gap: 12px;
 
-    padding: 40px;
+    padding: 30px;
     width: 100%;
     background: rgba(247, 227, 236, 0.92);
     backdrop-filter: blur(8px);
