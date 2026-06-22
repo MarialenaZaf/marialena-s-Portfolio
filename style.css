@@ -260,3 +260,22 @@ img {
     background: #8a4a68;
     transform: scale(1.1);
 }
+
+/* Για Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 10px; /* Πλάτος του scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #e7a4a4; /* Χρώμα της διαδρομής (πίσω μέρος) */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c77d9c; /* Το χρώμα της μπάρας που σέρνεται */
+    border-radius: 5px; /* Στρογγυλεμένες γωνίες */
+    border: 2px solid #a93cad; /* Μικρό κενό γύρω από τη μπάρα */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8a4a68; /* Πιο σκούρο χρώμα όταν περνάει το ποντίκι */
+}
