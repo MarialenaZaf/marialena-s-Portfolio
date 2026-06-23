@@ -530,12 +530,12 @@ img {
 }
 @media (max-width: 768px) {
     .page6-grid {
-        width: 35%;
+        width: 45%;
         gap: 8px;
     }
 
     .page6-btn {
-        font-size: 0.45rem;
+        font-size: 0.55rem;
         padding: 8px;
     }
 }
