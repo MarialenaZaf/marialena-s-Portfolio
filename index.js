@@ -32,7 +32,7 @@ const canvas = document.getElementById('bookCanvas');
 const ctx = canvas.getContext('2d');
 const loading = document.getElementById('bookLoading');
 
-function getScale(page) {
+function getScale() {
     return 0.5;
 }
 
