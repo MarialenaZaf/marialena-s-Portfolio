@@ -187,6 +187,20 @@ img {
         padding: 20px; /* Μειώνουμε το padding για να κερδίσουμε χώρο */
     }
 
+    #bookCanvas {
+        max-width: 75vw;
+        max-height: 23vh;  /* από 28vh */
+    }
+
+    .book-arrow {
+        font-size: 2rem;
+        width: 36px;
+        height: 36px;
+    }
+    .book-page-counter {
+        display: none;
+    }
+
     .contact-form input,
     .contact-form textarea {
         padding: 10px; /* Πιο στενά inputs */

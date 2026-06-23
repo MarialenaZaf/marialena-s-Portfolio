@@ -19,7 +19,6 @@ document.querySelectorAll('.close-panel').forEach(btn => {
     });
 });
 
-
 // ========== PDF VIEWER ==========
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -30,6 +29,14 @@ let isAnimating = false;
 const canvas = document.getElementById('bookCanvas');
 const ctx = canvas.getContext('2d');
 const loading = document.getElementById('bookLoading');
+
+function getScale(page) {
+    const baseViewport = page.getViewport({ scale: 1 });
+    const maxWidth = window.innerWidth < 600
+        ? window.innerWidth * 0.75   // κινητό
+        : window.innerWidth * 0.65;  // desktop
+    return maxWidth / baseViewport.width;
+}
 
 async function loadPDF() {
     loading.style.display = 'flex';
@@ -48,7 +55,9 @@ async function renderPage(num, direction = 'right') {
     canvas.style.display = 'none';
 
     const page = await pdfDoc.getPage(num);
-    const viewport = page.getViewport({ scale: 1.5 });
+    const scale = getScale(page);
+    const viewport = page.getViewport({ scale });
+
     canvas.width = viewport.width;
     canvas.height = viewport.height;
 
@@ -84,6 +93,11 @@ document.getElementById('nextPage').addEventListener('click', () => {
         currentPage++;
         renderPage(currentPage, 'right');
     }
+});
+
+// Re-render όταν αλλάξει το μέγεθος της οθόνης
+window.addEventListener('resize', () => {
+    if (pdfDoc) renderPage(currentPage);
 });
 
 loadPDF();
