@@ -22,6 +22,7 @@ img {
 .page3,
 .page4,
 .page5,
+.page6,
 .last-Page-Email {
     position: relative;
     width: 100%;
@@ -281,7 +282,7 @@ img {
     grid-template-rows: repeat(2, 1fr);
     gap: 75px;
 
-    width: 40%;
+    width: 50%;
 }
 
 .covers-grid img {
@@ -299,7 +300,7 @@ img {
 
 @media (max-width: 768px) {
     .covers-grid {
-        width: 35%;
+        width: 45%;
         gap: 10px;
     }
 }
@@ -387,4 +388,92 @@ img {
     .project-panel h2 {
         font-size: 1.4rem;
     }
+}
+
+.book-viewer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10;
+    width: 90%;
+}
+
+.book-canvas-wrapper {
+    box-shadow: -8px 0 20px rgba(0,0,0,0.3), 8px 0 20px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#bookCanvas {
+    display: block;
+    max-width: 65vw;
+    max-height: 80vh;
+}
+
+.book-arrow {
+    background: rgba(247, 227, 236, 0.85);
+    border: 2px solid #c77d9c;
+    color: #c77d9c;
+    font-size: 3rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.book-arrow:hover {
+    background: #c77d9c;
+    color: white;
+    transform: scale(1.1);
+}
+
+.book-page-counter {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #c77d9c;
+    font-family: "Playfair Display", serif;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    #bookCanvas {
+        max-width: 75vw;
+        max-height: 40vh;  /* από 28vh */
+    }
+
+    .book-arrow {
+        font-size: 2rem;
+        width: 36px;
+        height: 36px;
+    }
+    .book-page-counter {
+        display: none;
+    }
+}
+.book-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #c77d9c;
+    font-family: "Playfair Display", serif;
+    gap: 10px;
+    min-width: 200px;
+    min-height: 150px;
+}
+
+.book-loading i {
+    font-size: 2rem;
 }
