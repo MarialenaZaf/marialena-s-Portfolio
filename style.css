@@ -464,7 +464,7 @@ img {
 @media (max-width: 768px) {
     #bookCanvas {
         max-width: 75vw;
-        max-height: 28vh;  /* από 28vh */
+        max-height: 24vh;  /* από 28vh */
     }
 
     .book-arrow {
@@ -490,4 +490,52 @@ img {
 
 .book-loading i {
     font-size: 2rem;
+}
+
+.page6-grid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 50px;
+
+    width:45%;
+}
+
+.page6-btn {
+    background: rgba(247, 227, 236, 0.85);
+    border: 2px solid #c77d9c;
+    color: #c77d9c;
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    padding: 18px 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(199, 125, 156, 0.4);
+}
+
+.page6-btn:hover {
+    background: #c77d9c;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(199, 125, 156, 0.7);
+}
+@media (max-width: 768px) {
+    .page6-grid {
+        width: 35%;
+        gap: 8px;
+    }
+
+    .page6-btn {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
 }
