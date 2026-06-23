@@ -19,6 +19,7 @@ document.querySelectorAll('.close-panel').forEach(btn => {
     });
 });
 
+
 // ========== PDF VIEWER ==========
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -32,9 +33,10 @@ const loading = document.getElementById('bookLoading');
 
 function getScale(page) {
     const baseViewport = page.getViewport({ scale: 1 });
-    const maxWidth = window.innerWidth < 600
-        ? window.innerWidth * 0.75   // κινητό
-        : window.innerWidth * 0.65;  // desktop
+    const isMobile = window.innerWidth <= 768;
+    const maxWidth = isMobile
+        ? window.innerWidth * 0.70
+        : window.innerWidth * 0.40;
     return maxWidth / baseViewport.width;
 }
 
@@ -95,9 +97,11 @@ document.getElementById('nextPage').addEventListener('click', () => {
     }
 });
 
-// Re-render όταν αλλάξει το μέγεθος της οθόνης
 window.addEventListener('resize', () => {
-    if (pdfDoc) renderPage(currentPage);
+    if (pdfDoc) {
+        isAnimating = false;
+        renderPage(currentPage, 'right');
+    }
 });
 
 loadPDF();
