@@ -32,8 +32,13 @@ const canvas = document.getElementById('bookCanvas');
 const ctx = canvas.getContext('2d');
 const loading = document.getElementById('bookLoading');
 
-function getScale() {
-    return 0.5;
+function getScale(page) {
+    const baseViewport = page.getViewport({ scale: 1 });
+    const isMobile = window.innerWidth <= 768;
+    const maxWidth = isMobile
+        ? window.innerWidth * 0.70
+        : window.innerWidth * 0.40;
+    return maxWidth / baseViewport.width;
 }
 
 async function loadPDF() {
@@ -89,6 +94,13 @@ document.getElementById('prevPage').addEventListener('click', () => {
 document.getElementById('nextPage').addEventListener('click', () => {
     if (currentPage < pdfDoc.numPages && !isAnimating) {
         currentPage++;
+        renderPage(currentPage, 'right');
+    }
+});
+
+window.addEventListener('resize', () => {
+    if (pdfDoc) {
+        isAnimating = false;
         renderPage(currentPage, 'right');
     }
 });
