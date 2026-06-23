@@ -464,7 +464,7 @@ img {
 @media (max-width: 768px) {
     #bookCanvas {
         max-width: 75vw;
-        max-height: 40vh;  /* από 28vh */
+        max-height: 28vh;  /* από 28vh */
     }
 
     .book-arrow {
