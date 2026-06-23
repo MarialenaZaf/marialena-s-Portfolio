@@ -461,9 +461,8 @@ img {
 @media (max-width: 768px) {
     #bookCanvas {
         max-width: 75vw;
-        max-height: 24vh;  /* από 28vh */
+        max-height: 24vh;
     }
-
     .book-arrow {
         font-size: 2rem;
         width: 36px;
@@ -509,7 +508,7 @@ img {
     color: #c77d9c;
     font-family: "Playfair Display", serif;
     font-size: 1.4rem;
-    padding: 18px 24px;
+    padding: 5px 5px;
     cursor: pointer;
     transition: 0.3s;
     text-decoration: none;
@@ -534,5 +533,29 @@ img {
     .page6-btn {
         font-size: 0.40rem;
         padding: 8px;
+    }
+}
+
+/* Αρχικά το μήνυμα είναι κρυφό παντού */
+#rotate-message {
+    display: none; /* Κρυμμένο παντού εξ ορισμού */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f38bf3;
+    color: #e5dbdf;
+    z-index: 9999;
+    text-align: center;
+    padding-top: 20%;
+    font-size: 20px;
+}
+
+
+/* Εμφάνιση ΜΟΝΟ σε συσκευές αφής (κινητά) ΚΑΙ σε οριζόντια διάταξη */
+@media only screen and (max-width: 900px) and (orientation: landscape) and (pointer: coarse) {
+    #rotate-message {
+        display: block !important;
     }
 }
