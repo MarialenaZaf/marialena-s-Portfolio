@@ -164,15 +164,12 @@ img {
 @media (max-width: 768px) {
     .stitchLine {
         left: 43%;
+        top: -10%;
+        width: 10%;
     }
 }
 /* 6. Responsive */
 @media (max-width: 600px) {
-    .stitchLine {
-        top: -10%;
-        left: 42%;
-
-    }
 
     .contact-me-fieldset {
         gap: 10px;
@@ -535,7 +532,7 @@ img {
     }
 
     .page6-btn {
-        font-size: 0.55rem;
+        font-size: 0.40rem;
         padding: 8px;
     }
 }
