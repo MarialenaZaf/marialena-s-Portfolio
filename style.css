@@ -536,26 +536,37 @@ img {
     }
 }
 
-/* Αρχικά το μήνυμα είναι κρυφό παντού */
+
 #rotate-message {
-    display: none; /* Κρυμμένο παντού εξ ορισμού */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f38bf3;
-    color: #e5dbdf;
-    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #fdfcfb 0%, #965dce 100%);
+    z-index: 999999;
     text-align: center;
-    padding-top: 20%;
-    font-size: 20px;
+    padding-top: 20vh;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Το εικονίδιο με animation */
+.rotate-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    animation: spin 2s linear infinite;
+    display: inline-block;
+}
 
-/* Εμφάνιση ΜΟΝΟ σε συσκευές αφής (κινητά) ΚΑΙ σε οριζόντια διάταξη */
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Μορφοποίηση κειμένων */
+.main-text { font-size: 22px; font-weight: bold; color: #333; margin: 0; }
+.sub-text { font-size: 16px; color: #666; margin-top: 5px; }
+
+/* Το Media Query παραμένει το ίδιο για να είναι "σίγουρο" */
 @media only screen and (max-width: 900px) and (orientation: landscape) and (pointer: coarse) {
-    #rotate-message {
-        display: block !important;
-    }
+    #rotate-message { display: block !important; }
 }
