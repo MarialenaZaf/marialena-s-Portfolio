@@ -160,11 +160,17 @@ img {
     transform: scale(1.2);
 }
 
+@media (max-width: 768px) {
+    .stitchLine {
+        left: 43%;
+    }
+}
 /* 6. Responsive */
 @media (max-width: 600px) {
     .stitchLine {
-        width: 32px;
-        left: 14%;
+        top: -10%;
+        left: 42%;
+
     }
 
     .contact-me-fieldset {
