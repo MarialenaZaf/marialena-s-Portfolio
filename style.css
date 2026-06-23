@@ -19,37 +19,21 @@ img {
 /* 2. Σελίδες */
 .page1,
 .page2,
+.page3,
+.page4,
+.page5,
 .last-Page-Email {
     position: relative;
     width: 100%;
     line-height: 0;
 }
 
-/* 3. Στολίδια Σελίδας 1 */
-.spinningButton {
-    position: absolute;
-    top: 10%;
-    left: 22%;
-    width: 5.5%;
-    min-width: 24px;
-    max-width: 70px;
-    filter: drop-shadow(2px 3px 3px rgba(150, 80, 115, 0.35));
-    animation: spinButton 6s linear infinite;
-}
 
-@keyframes spinButton {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
 
 .needleThread {
     position: absolute;
-    top: 69%;
-    left: 67%;
+    top: 21%;
+    left: 73%;
     width: 6%;
     min-width: 26px;
     max-width: 74px;
@@ -71,10 +55,10 @@ img {
 /* 4. Ραφή (Stitch) */
 .stitchLine {
     position: absolute;
-    top: 0;
-    left: 16%;
-    width: 50px;
-    height: 85%;
+    top: -10%;
+    left: 47%;
+    width: 60px;
+    height: 110%;
     pointer-events: none;
     filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.3));
 }
