@@ -679,3 +679,35 @@ img {
         max-width: 240px !important;
     }
 }
+
+.page6 h1 {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Playfair Display", serif;
+    color: #c77d9c;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-align: center;
+    white-space: nowrap;
+    animation: glowText 2.5s ease-in-out infinite;
+}
+
+@keyframes glowText {
+    0%, 100% {
+        text-shadow: 0 0 8px rgb(199 125 156 / 0.94),
+        0 0 15px rgba(199, 125, 156, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(199, 125, 156, 0.9),
+        0 0 30px rgba(199, 125, 156, 0.7),
+        0 0 50px rgba(199, 125, 156, 0.5);
+    }
+}
+
+@media (max-width: 1025px) {
+    .page6 h1 {
+        display: none;
+    }
+}
