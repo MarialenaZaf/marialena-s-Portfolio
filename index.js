@@ -117,3 +117,187 @@ document.querySelectorAll('.page6-btn').forEach(btn => {
         targetPanel.scrollIntoView({ behavior: 'smooth' });
     });
 });
+
+// ===== BOHO PDF =====
+let bohoDoc = null;
+let bohoPage = 1;
+let bohoAnimating = false;
+const bohoCanvas = document.getElementById('bohoCanvas');
+const bohoCtx = bohoCanvas.getContext('2d');
+const bohoLoading = document.getElementById('bohoLoading');
+
+async function loadBohoPDF() {
+    bohoLoading.style.display = 'flex';
+    bohoCanvas.style.display = 'none';
+    bohoDoc = await pdfjsLib.getDocument('img/boho.pdf').promise;
+    renderBohoPage(bohoPage);
+}
+
+async function renderBohoPage(num, direction = 'right') {
+    if (bohoAnimating) return;
+    bohoAnimating = true;
+
+    bohoLoading.style.display = 'flex';
+    bohoCanvas.style.display = 'none';
+
+    const page = await bohoDoc.getPage(num);
+    const viewport = page.getViewport({ scale: 1.5 });
+    bohoCanvas.width = viewport.width;
+    bohoCanvas.height = viewport.height;
+    await page.render({ canvasContext: bohoCtx, viewport }).promise;
+
+    const slideIn = direction === 'right' ? '100%' : '-100%';
+    bohoLoading.style.display = 'none';
+    bohoCanvas.style.transition = 'none';
+    bohoCanvas.style.transform = `translateX(${slideIn})`;
+    bohoCanvas.style.opacity = '0';
+    bohoCanvas.style.display = 'block';
+
+    setTimeout(() => {
+        bohoCanvas.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+        bohoCanvas.style.transform = 'translateX(0)';
+        bohoCanvas.style.opacity = '1';
+        bohoAnimating = false;
+    }, 20);
+}
+
+document.getElementById('bohoPrev').addEventListener('click', () => {
+    if (bohoPage > 1 && !bohoAnimating) {
+        bohoPage--;
+        renderBohoPage(bohoPage, 'left');
+    }
+});
+
+document.getElementById('bohoNext').addEventListener('click', () => {
+    if (bohoDoc && bohoPage < bohoDoc.numPages && !bohoAnimating) {
+        bohoPage++;
+        renderBohoPage(bohoPage, 'right');
+    }
+});
+
+// Φόρτωσε το PDF όταν ανοίξει το panel
+document.querySelector('[data-project="project9"]').addEventListener('click', () => {
+    if (!bohoDoc) loadBohoPDF();
+});
+
+// ===== MINIMAL PDF =====
+let minimalDoc = null;
+let minimalPage = 1;
+let minimalAnimating = false;
+const minimalCanvas = document.getElementById('minimalCanvas');
+const minimalCtx = minimalCanvas.getContext('2d');
+const minimalLoading = document.getElementById('minimalLoading');
+
+async function loadMinimalPDF() {
+    minimalLoading.style.display = 'flex';
+    minimalCanvas.style.display = 'none';
+    minimalDoc = await pdfjsLib.getDocument('img/minimal.pdf').promise;
+    renderMinimalPage(minimalPage);
+}
+
+async function renderMinimalPage(num, direction = 'right') {
+    if (minimalAnimating) return;
+    minimalAnimating = true;
+
+    minimalLoading.style.display = 'flex';
+    minimalCanvas.style.display = 'none';
+
+    const page = await minimalDoc.getPage(num);
+    const viewport = page.getViewport({ scale: 1.5 });
+    minimalCanvas.width = viewport.width;
+    minimalCanvas.height = viewport.height;
+    await page.render({ canvasContext: minimalCtx, viewport }).promise;
+
+    const slideIn = direction === 'right' ? '100%' : '-100%';
+    minimalLoading.style.display = 'none';
+    minimalCanvas.style.transition = 'none';
+    minimalCanvas.style.transform = `translateX(${slideIn})`;
+    minimalCanvas.style.opacity = '0';
+    minimalCanvas.style.display = 'block';
+
+    setTimeout(() => {
+        minimalCanvas.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+        minimalCanvas.style.transform = 'translateX(0)';
+        minimalCanvas.style.opacity = '1';
+        minimalAnimating = false;
+    }, 20);
+}
+
+document.getElementById('minimalPrev').addEventListener('click', () => {
+    if (minimalPage > 1 && !minimalAnimating) {
+        minimalPage--;
+        renderMinimalPage(minimalPage, 'left');
+    }
+});
+
+document.getElementById('minimalNext').addEventListener('click', () => {
+    if (minimalDoc && minimalPage < minimalDoc.numPages && !minimalAnimating) {
+        minimalPage++;
+        renderMinimalPage(minimalPage, 'right');
+    }
+});
+
+document.querySelector('[data-project="project7"]').addEventListener('click', () => {
+    if (!minimalDoc) loadMinimalPDF();
+});
+
+// ===== STREET PDF =====
+let streetDoc = null;
+let streetPage = 1;
+let streetAnimating = false;
+const streetCanvas = document.getElementById('streetCanvas');
+const streetCtx = streetCanvas.getContext('2d');
+const streetLoading = document.getElementById('streetLoading');
+
+async function loadStreetPDF() {
+    streetLoading.style.display = 'flex';
+    streetCanvas.style.display = 'none';
+    streetDoc = await pdfjsLib.getDocument('img/street.pdf').promise;
+    renderStreetPage(streetPage);
+}
+
+async function renderStreetPage(num, direction = 'right') {
+    if (streetAnimating) return;
+    streetAnimating = true;
+
+    streetLoading.style.display = 'flex';
+    streetCanvas.style.display = 'none';
+
+    const page = await streetDoc.getPage(num);
+    const viewport = page.getViewport({ scale: 1.5 });
+    streetCanvas.width = viewport.width;
+    streetCanvas.height = viewport.height;
+    await page.render({ canvasContext: streetCtx, viewport }).promise;
+
+    const slideIn = direction === 'right' ? '100%' : '-100%';
+    streetLoading.style.display = 'none';
+    streetCanvas.style.transition = 'none';
+    streetCanvas.style.transform = `translateX(${slideIn})`;
+    streetCanvas.style.opacity = '0';
+    streetCanvas.style.display = 'block';
+
+    setTimeout(() => {
+        streetCanvas.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+        streetCanvas.style.transform = 'translateX(0)';
+        streetCanvas.style.opacity = '1';
+        streetAnimating = false;
+    }, 20);
+}
+
+document.getElementById('streetPrev').addEventListener('click', () => {
+    if (streetPage > 1 && !streetAnimating) {
+        streetPage--;
+        renderStreetPage(streetPage, 'left');
+    }
+});
+
+document.getElementById('streetNext').addEventListener('click', () => {
+    if (streetDoc && streetPage < streetDoc.numPages && !streetAnimating) {
+        streetPage++;
+        renderStreetPage(streetPage, 'right');
+    }
+});
+
+document.querySelector('[data-project="project8"]').addEventListener('click', () => {
+    if (!streetDoc) loadStreetPDF();
+});

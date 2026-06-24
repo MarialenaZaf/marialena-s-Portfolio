@@ -570,3 +570,112 @@ img {
 @media only screen and (max-width: 900px) and (orientation: landscape) and (pointer: coarse) {
     #rotate-message { display: block !important; }
 }
+
+.panel-book-viewer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.panel-canvas-wrapper {
+    box-shadow: -8px 0 20px rgba(0,0,0,0.3), 8px 0 20px rgba(0,0,0,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#bohoCanvas {
+    display: block;
+    width: 450px !important;
+    height: auto !important;
+    max-width: 450px !important;
+}
+
+.panel-arrow {
+    background: rgba(247, 227, 236, 0.85);
+    border: 2px solid #c77d9c;
+    color: #c77d9c;
+    font-size: 3rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel-arrow:hover {
+    background: #c77d9c;
+    color: white;
+    transform: scale(1.1);
+}
+
+.panel-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #c77d9c;
+    font-family: "Playfair Display", serif;
+    gap: 10px;
+    min-width: 200px;
+    min-height: 150px;
+}
+
+@media (max-width: 768px) {
+    #bohoCanvas {
+        width: 240px !important;
+        max-width: 240px !important;
+    }
+
+    .panel-arrow {
+        font-size: 2rem;
+        width: 36px;
+        height: 36px;
+    }
+}
+.pdf-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #c77d9c;
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: 0.3s;
+}
+
+.pdf-link:hover {
+    color: #8a4a68;
+    transform: scale(1.05);
+}
+#streetCanvas {
+    display: block;
+    width: 450px !important;
+    height: auto !important;
+    max-width: 450px !important;
+}
+
+@media (max-width: 768px) {
+    #streetCanvas {
+        width: 240px !important;
+        max-width: 240px !important;
+    }
+}
+#minimalCanvas {
+    display: block;
+    width: 450px !important;
+    height: auto !important;
+    max-width: 450px !important;
+}
+
+@media (max-width: 768px) {
+    #minimalCanvas {
+        width: 240px !important;
+        max-width: 240px !important;
+    }
+}
