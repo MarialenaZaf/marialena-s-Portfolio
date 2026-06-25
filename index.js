@@ -301,3 +301,64 @@ document.getElementById('streetNext').addEventListener('click', () => {
 document.querySelector('[data-project="project8"]').addEventListener('click', () => {
     if (!streetDoc) loadStreetPDF();
 });
+
+// ===== CIRCUS PDF =====
+let circusDoc = null;
+let circusPage = 1;
+let circusAnimating = false;
+const circusCanvas = document.getElementById('circusCanvas');
+const circusCtx = circusCanvas.getContext('2d');
+const circusLoading = document.getElementById('circusLoading');
+
+async function loadCircusPDF() {
+    circusLoading.style.display = 'flex';
+    circusCanvas.style.display = 'none';
+    circusDoc = await pdfjsLib.getDocument('img/circus.pdf').promise;
+    renderCircusPage(circusPage);
+}
+
+async function renderCircusPage(num, direction = 'right') {
+    if (circusAnimating) return;
+    circusAnimating = true;
+
+    circusLoading.style.display = 'flex';
+    circusCanvas.style.display = 'none';
+
+    const page = await circusDoc.getPage(num);
+    const viewport = page.getViewport({ scale: 1.5 });
+    circusCanvas.width = viewport.width;
+    circusCanvas.height = viewport.height;
+    await page.render({ canvasContext: circusCtx, viewport }).promise;
+
+    const slideIn = direction === 'right' ? '100%' : '-100%';
+    circusLoading.style.display = 'none';
+    circusCanvas.style.transition = 'none';
+    circusCanvas.style.transform = `translateX(${slideIn})`;
+    circusCanvas.style.opacity = '0';
+    circusCanvas.style.display = 'block';
+
+    setTimeout(() => {
+        circusCanvas.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+        circusCanvas.style.transform = 'translateX(0)';
+        circusCanvas.style.opacity = '1';
+        circusAnimating = false;
+    }, 20);
+}
+
+document.getElementById('circusPrev').addEventListener('click', () => {
+    if (circusPage > 1 && !circusAnimating) {
+        circusPage--;
+        renderCircusPage(circusPage, 'left');
+    }
+});
+
+document.getElementById('circusNext').addEventListener('click', () => {
+    if (circusDoc && circusPage < circusDoc.numPages && !circusAnimating) {
+        circusPage++;
+        renderCircusPage(circusPage, 'right');
+    }
+});
+
+document.querySelector('[data-project="project4"]').addEventListener('click', () => {
+    if (!circusDoc) loadCircusPDF();
+});
