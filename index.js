@@ -1,9 +1,16 @@
 const messages = [
-    "Preparing something beautiful for you... ",
-    "Loading the collection... ",
-    "Almost ready... ",
-    "Ironing out the last details... ",
-    "Your fashion journey is about to begin... "
+    "Preparing something beautiful for you...",
+    "Loading the collection...",
+    "Almost ready...",
+    "Ironing out the last details...",
+    "Your fashion journey is about to begin...",
+    "Styling the pixels...",
+    "Picking the perfect palette...",
+    "Sewing it all together...",
+    "The runway is almost ready...",
+    "Fashion takes time, darling...",
+    "Last stitch... almost there!",
+    "Curating your experience..."
 ];
 
 let msgIndex = 0;
@@ -391,3 +398,51 @@ document.getElementById('circusNext').addEventListener('click', () => {
 document.querySelector('[data-project="project4"]').addEventListener('click', () => {
     if (!circusDoc) loadCircusPDF();
 });
+
+// ===== SWIPE SUPPORT =====
+function addSwipe(element, onLeft, onRight) {
+    let startX = 0;
+    let startY = 0;
+
+    element.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    element.addEventListener('touchend', (e) => {
+        const diffX = startX - e.changedTouches[0].clientX;
+        const diffY = startY - e.changedTouches[0].clientY;
+
+        // Μόνο αν το swipe είναι οριζόντιο
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+            if (diffX > 0) onLeft();   // swipe αριστερά → επόμενη
+            else onRight();             // swipe δεξιά → προηγούμενη
+        }
+    }, { passive: true });
+}
+
+// Εφάρμοσε σε κάθε PDF
+addSwipe(document.getElementById('bookCanvas'),
+    () => { if (currentPage < pdfDoc?.numPages && !isAnimating) { currentPage++; renderPage(currentPage, 'right'); }},
+    () => { if (currentPage > 1 && !isAnimating) { currentPage--; renderPage(currentPage, 'left'); }}
+);
+
+addSwipe(document.getElementById('minimalCanvas'),
+    () => { if (minimalPage < minimalDoc?.numPages && !minimalAnimating) { minimalPage++; renderMinimalPage(minimalPage, 'right'); }},
+    () => { if (minimalPage > 1 && !minimalAnimating) { minimalPage--; renderMinimalPage(minimalPage, 'left'); }}
+);
+
+addSwipe(document.getElementById('streetCanvas'),
+    () => { if (streetPage < streetDoc?.numPages && !streetAnimating) { streetPage++; renderStreetPage(streetPage, 'right'); }},
+    () => { if (streetPage > 1 && !streetAnimating) { streetPage--; renderStreetPage(streetPage, 'left'); }}
+);
+
+addSwipe(document.getElementById('bohoCanvas'),
+    () => { if (bohoPage < bohoDoc?.numPages && !bohoAnimating) { bohoPage++; renderBohoPage(bohoPage, 'right'); }},
+    () => { if (bohoPage > 1 && !bohoAnimating) { bohoPage--; renderBohoPage(bohoPage, 'left'); }}
+);
+
+addSwipe(document.getElementById('circusCanvas'),
+    () => { if (circusPage < circusDoc?.numPages && !circusAnimating) { circusPage++; renderCircusPage(circusPage, 'right'); }},
+    () => { if (circusPage > 1 && !circusAnimating) { circusPage--; renderCircusPage(circusPage, 'left'); }}
+);
