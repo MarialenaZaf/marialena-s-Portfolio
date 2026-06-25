@@ -40,55 +40,6 @@ window.addEventListener('load', () => {
     }, delay);
 });
 
-
-// ================================================================
-// SCROLL PROGRESS BAR - Μπάρα προόδου scroll πάνω στη σελίδα
-// ================================================================
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    document.getElementById('progress-bar').style.width = progress + '%';
-});
-
-
-// ================================================================
-// FADE IN ON SCROLL - Sections εμφανίζονται καθώς scrollάρεις
-// ================================================================
-const fadeSections = document.querySelectorAll('.fade-section');
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.1 });
-
-fadeSections.forEach(section => observer.observe(section));
-
-
-// ================================================================
-// CUSTOM CURSOR - Προσαρμοσμένος κέρσορας
-// ================================================================
-const cursor = document.getElementById('custom-cursor');
-
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-// Μεγαλώνει όταν περνάει πάνω από κουμπιά και links
-document.querySelectorAll('a, button, .cover-btn, .page6-btn').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-    });
-    el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-    });
-});
-
-
 // ================================================================
 // PROJECT PANELS - Άνοιγμα/κλείσιμο panels από covers (page4)
 // ================================================================
