@@ -583,3 +583,7 @@ addSwipe(document.getElementById('circusCanvas'),
     () => { if (circusPage < circusDoc?.numPages && !circusAnimating) { circusPage++; renderCircusPage(circusPage, 'right'); }},
     () => { if (circusPage > 1 && !circusAnimating) { circusPage--; renderCircusPage(circusPage, 'left'); }}
 );
+// pdf viewer for page5
+function openFullPdf() {
+    window.open('img/page5_pdf.pdf', '_blank');
+}
