@@ -1,9 +1,9 @@
 const messages = [
-    "Preparing something beautiful for you... ✨",
-    "Loading the collection... 👗",
-    "Almost ready... 🪡",
-    "Ironing out the last details... 🧵",
-    "Your fashion journey is about to begin... 💫"
+    "Preparing something beautiful for you... ",
+    "Loading the collection... ",
+    "Almost ready... ",
+    "Ironing out the last details... ",
+    "Your fashion journey is about to begin... "
 ];
 
 let msgIndex = 0;
