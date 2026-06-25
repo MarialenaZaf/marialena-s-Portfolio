@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link rel="icon" type="image/png" href="img/fashion-svgrepo-com.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #f7e3ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "Playfair Display", serif;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #c77d9c;
+            border-radius: 18px;
+            background: rgba(247, 227, 236, 0.92);
+            margin: 20px;
+            max-width: 500px;
+        }
+
+        .number {
+            font-size: 6rem;
+            color: #c77d9c;
+            animation: glowText 2.5s ease-in-out infinite;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #c77d9c;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        p {
+            color: #8a4a68;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        a {
+            color: #c77d9c;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        a:hover { color: #8a4a68; }
+
+        .scissors {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 20px;
+            animation: snip 1.5s ease-in-out infinite;
+        }
+
+        @keyframes snip {
+            0%, 100% { transform: rotate(-10deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.1); }
+        }
+
+        @keyframes glowText {
+            0%, 100% {
+                text-shadow: 0 0 8px rgba(199, 125, 156, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(199, 125, 156, 0.9),
+                0 0 40px rgba(199, 125, 156, 0.6);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .number { font-size: 4rem; }
+            h1 { font-size: 1.2rem; }
+            p { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <span class="scissors">✂</span>
+    <div class="number">404</div>
+    <h1>Oops! This page got lost on the runway.</h1>
+    <p>The page you are looking for does not exist or has been moved.<br>
+        Let us take you back to the collection.</p>
+    <a href="https://marialenazaf.github.io/marialena-s-Portfolio/">Back to Portfolio</a>
+</div>
+</body>
+</html>
