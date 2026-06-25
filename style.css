@@ -791,3 +791,19 @@ img {
     0%, 100% { transform: translateY(0); opacity: 0.4; }
     50% { transform: translateY(-8px); opacity: 1; }
 }
+
+.splash-title {
+    font-family: "Playfair Display", serif;
+    color: #c77d9c;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+}
+
+.splash-subtitle {
+    font-family: "Playfair Display", serif;
+    color: #8a4a68;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+    min-height: 1.5em;
+}
