@@ -807,3 +807,14 @@ img {
     transition: opacity 0.3s ease;
     min-height: 1.5em;
 }
+.project-panel {
+    contain: layout style paint;
+}
+.project-panel {
+    contain: layout style paint;
+    will-change: auto;
+}
+
+.project-panel.active {
+    will-change: transform;
+}
