@@ -357,15 +357,25 @@ const strokes = [
     { color: '#e8a4c4', size: '220px', top: '40%',  left: '40%', delay: '0.5s', duration: '9s' },
 ];
 
-strokes.forEach(s => {
-    const el = document.createElement('div');
-    el.classList.add('brushstroke');
-    el.style.width = s.size;
-    el.style.height = s.size;
-    el.style.top = s.top;
-    el.style.left = s.left;
-    el.style.background = s.color;
-    el.style.animationDelay = s.delay;
-    el.style.animationDuration = s.duration;
-    page7.appendChild(el);
-});
+// Δημιουργεί τα brushstrokes μόνο όταν φαίνεται το page7
+const page7BrushObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            strokes.forEach(s => {
+                const el = document.createElement('div');
+                el.classList.add('brushstroke');
+                el.style.width = s.size;
+                el.style.height = s.size;
+                el.style.top = s.top;
+                el.style.left = s.left;
+                el.style.background = s.color;
+                el.style.animationDelay = s.delay;
+                el.style.animationDuration = s.duration;
+                page7.appendChild(el);
+            });
+            page7BrushObserver.disconnect();
+        }
+    });
+}, { threshold: 0.1 });
+
+page7BrushObserver.observe(page7);
