@@ -818,3 +818,206 @@ img {
 .project-panel.active {
     will-change: transform;
 }
+#vivaCanvas {
+    display: block;
+    width: 450px !important;
+    height: auto !important;
+    max-width: 450px !important;
+}
+
+@media (max-width: 768px) {
+    #vivaCanvas {
+        width: 240px !important;
+        max-width: 240px !important;
+    }
+}
+#greekCanvas {
+    display: block;
+    width: 450px !important;
+    height: auto !important;
+    max-width: 450px !important;
+}
+
+@media (max-width: 768px) {
+    #greekCanvas {
+        width: 240px !important;
+        max-width: 240px !important;
+    }
+}
+.page7 {
+    position: relative;
+    width: 100%;
+    min-width: 100%;
+    line-height: 1.5;
+    background: #f7e3ec;
+    padding: 60px 20px;
+    min-height: 600px;
+    box-sizing: border-box;
+}
+
+.page7-content {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+}
+
+
+.page7-title {
+    font-family: "Playfair Display", serif;
+    color: #c77d9c;
+    font-size: 3rem;
+    letter-spacing: 3px;
+    text-align: center;
+    animation: glowText 2.5s ease-in-out infinite;
+}
+
+.page7-tabs {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+
+.page7-tab {
+    font-family: "Playfair Display", serif;
+    font-size: 0.95rem;
+    color: #c77d9c;
+    background: rgba(247, 227, 236, 0.7);
+    border: 2px solid #c77d9c;
+    border-radius: 30px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    letter-spacing: 1px;
+    margin-top: 10%;
+}
+
+.page7-tab.active,
+.page7-tab:hover {
+    background: #c77d9c;
+    color: white;
+    transform: scale(1.05);
+}
+
+.page7-panel {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    animation: fadeInPanel 0.4s ease;
+    width: 100%;
+}
+
+.page7-panel.active {
+    display: flex;
+}
+
+@keyframes fadeInPanel {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.page7-desc {
+    font-family: "Playfair Display", serif;
+    color: #8a4a68;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 800px;
+    background: rgba(247, 227, 236, 0.75);
+    padding: 10px 16px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+}
+
+.page7-img {
+    width: 300px !important;
+    height: auto !important;
+    max-width: 300px !important;
+    border-radius: 12px;
+    box-shadow: 2px 4px 15px rgba(199, 125, 156, 0.4);
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.page7-img:hover {
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .page7-title {
+        font-size: 1.4rem;
+        letter-spacing: 3px;
+    }
+
+    .page7-content {
+        width: 90%;
+        gap: 10px;
+    }
+
+    .page7-tab {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+    }
+
+    .page7-img {
+        width: 160px !important;
+        max-width: 160px !important;
+    }
+
+    .flapper-img {
+        width: 250px !important;
+        max-width: 250px !important;
+    }
+
+    .page7-desc {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+    }
+}
+.flapper-img {
+    width: 550px !important;
+    max-width: 550px !important;
+}
+.page7 {
+    background: #f7e3ec;
+    overflow: hidden;
+    position: relative;
+}
+
+.brushstroke {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0;
+    animation: paintIn ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes paintIn {
+    0%   { opacity: 0; transform: scale(0.5); }
+    30%  { opacity: 0.5; transform: scale(1.2); }
+    60%  { opacity: 0.3; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.8); }
+}
+#onceCanvas {
+    display: block;
+    width: 450px !important;
+    height: auto !important;
+    max-width: 450px !important;
+}
+
+@media (max-width: 768px) {
+    #onceCanvas {
+        width: 240px !important;
+        max-width: 240px !important;
+    }
+}

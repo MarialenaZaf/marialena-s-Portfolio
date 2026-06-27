@@ -94,9 +94,21 @@
     <!-- Project Panels — αμέσως μετά το page4 -->
     <div class="project-panel" id="project1">
         <button class="close-panel">✕</button>
-        <h2>Project 1</h2>
-        <img src="img/projects/project1.jpg" alt="Project 1">
-        <p>Περιγραφή εργασίας 1...</p>
+        <h2>Once Upon a Time...</h2>
+        <div class="panel-book-viewer">
+            <button class="panel-arrow" id="oncePrev">&#8249;</button>
+            <div class="panel-canvas-wrapper">
+                <canvas id="onceCanvas"></canvas>
+                <div class="panel-loading" id="onceLoading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading...</p>
+                </div>
+            </div>
+            <button class="panel-arrow" id="onceNext">&#8250;</button>
+        </div>
+        <a href="img/once.pdf" target="_blank" class="pdf-link">
+            <i class="fas fa-file-pdf"></i> View full PDF
+        </a>
     </div>
 
     <div class="project-panel" id="project2">
@@ -134,16 +146,40 @@
 
     <div class="project-panel" id="project5">
         <button class="close-panel">✕</button>
-        <h2>Project 5</h2>
-        <img src="img/projects/project5.jpg" alt="Project 5">
-        <p>Περιγραφή εργασίας 5...</p>
+        <h2>Modern Looks Greek Roots</h2>
+        <div class="panel-book-viewer">
+            <button class="panel-arrow" id="greekPrev">&#8249;</button>
+            <div class="panel-canvas-wrapper">
+                <canvas id="greekCanvas"></canvas>
+                <div class="panel-loading" id="greekLoading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading...</p>
+                </div>
+            </div>
+            <button class="panel-arrow" id="greekNext">&#8250;</button>
+        </div>
+        <a href="img/greek.pdf" target="_blank" class="pdf-link">
+            <i class="fas fa-file-pdf"></i> View full PDF
+        </a>
     </div>
 
     <div class="project-panel" id="project6">
         <button class="close-panel">✕</button>
-        <h2>Project 6</h2>
-        <img src="img/projects/project6.jpg" alt="Project 6">
-        <p>Περιγραφή εργασίας 6...</p>
+        <h2>Rococo</h2>
+        <div class="panel-book-viewer">
+            <button class="panel-arrow" id="vivaPrev">&#8249;</button>
+            <div class="panel-canvas-wrapper">
+                <canvas id="vivaCanvas"></canvas>
+                <div class="panel-loading" id="vivaLoading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading...</p>
+                </div>
+            </div>
+            <button class="panel-arrow" id="vivaNext">&#8250;</button>
+        </div>
+        <a href="img/viva.pdf" target="_blank" class="pdf-link">
+            <i class="fas fa-file-pdf"></i> View full PDF
+        </a>
     </div>
 
     <section class="page5">
@@ -151,7 +187,7 @@
         <div class="book-viewer">
             <button class="book-arrow left-arrow" id="prevPage">&#8249;</button>
             <div class="book-canvas-wrapper">
-                <canvas id="bookCanvas" onclick="openFullPdf()" style="cursor: pointer;" title="view full PDF"></canvas>
+                <canvas id="bookCanvas" onclick="window.open('img/page5_pdf.pdf', '_blank');" style="cursor: pointer;" title="view full PDF"></canvas>
                 <div class="book-loading" id="bookLoading">
                     <i class="fas fa-spinner fa-spin"></i>
                     <p>Loading...</p>
@@ -237,6 +273,35 @@
         <h2>Styling: Athletic Chic</h2>
         <img src="img/athletic.png" alt="Athletic Chic" style="width: min(60%, 500px); margin: 0 auto; display: block; border-radius: 12px;">
     </div>
+
+    <section class="page7">
+        <div class="page7-content">
+            <h1 class="page7-title">Extra Projects</h1>
+
+            <div class="page7-tabs">
+                <button class="page7-tab active" data-tab="gen">
+                    LED Geometric Bodysuit
+                </button>
+                <button class="page7-tab" data-tab="flapper">
+                    Flapper Reborn
+                </button>
+            </div>
+
+            <div class="page7-panel active" id="tab-gen">
+                <p class="page7-desc">This piece pushes the boundaries of wearable technology, merging futuristic aesthetics with structured design. The integration of luminous LED elements into a precise geometric grid creates a dynamic, high-impact silhouette that transforms fashion into a light-based art form, perfectly capturing the experimental spirit of Next Generation Fashion.</p>
+                <a href="img/gen.png" target="_blank" title="view full image">
+                    <img src="img/gen.png" alt="LED Geometric Bodysuit" class="page7-img">
+                </a>
+            </div>
+
+            <div class="page7-panel" id="tab-flapper">
+                <p class="page7-desc">A contemporary reimagining of 1920s glamour, this collection breathes new life into the iconic flapper silhouette. By blending vintage sophistication with a bold, modern edge, "Flapper Reborn" proves that history never looked this bold, offering a daring tribute to the past designed for the confident woman of today.</p>
+                <a href="img/flapper.png" target="_blank">
+                    <img src="img/flapper.png" alt="Flapper Reborn" class="page7-img flapper-img">
+                </a>
+            </div>
+        </div>
+    </section>
 
     <section class="last-Page-Email">
         <img src="img/backEmail-Info.jpg" alt="Cover" class="last-Image" loading="lazy">

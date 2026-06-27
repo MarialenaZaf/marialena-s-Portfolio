@@ -1,9 +1,5 @@
 // ----------------------------------------------------------------
 // SPLASH SCREEN
-// Displays rotating messages while the page loads.
-// Messages fade in and out every 1.5 seconds.
-// The splash screen hides after the page fully loads,
-// with a longer delay on mobile to account for slower connections.
 // ----------------------------------------------------------------
 const messages = [
     "Preparing something beautiful for you...",
@@ -35,7 +31,6 @@ const messageInterval = setInterval(() => {
 window.addEventListener('load', () => {
     const isMobile = window.innerWidth <= 768;
     const delay = isMobile ? 2500 : 1500;
-
     setTimeout(() => {
         clearInterval(messageInterval);
         document.getElementById('splash-screen').classList.add('hidden');
@@ -45,11 +40,6 @@ window.addEventListener('load', () => {
 
 // ----------------------------------------------------------------
 // PROJECT PANELS
-// Handles opening and closing of project detail panels.
-// Triggered by clicking cover images on page4 or buttons on page6.
-// Only one panel can be open at a time.
-// When a panel is closed via the X button, its PDF resets to page 1
-// so that the next time it opens, it starts from the beginning.
 // ----------------------------------------------------------------
 const coverBtns = document.querySelectorAll('.cover-btn');
 const panels = document.querySelectorAll('.project-panel');
@@ -58,7 +48,6 @@ coverBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         const targetId = btn.dataset.project;
         const targetPanel = document.getElementById(targetId);
-
         panels.forEach(p => p.classList.remove('active'));
         targetPanel.classList.add('active');
         targetPanel.scrollIntoView({ behavior: 'smooth' });
@@ -69,14 +58,12 @@ document.querySelectorAll('.page6-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const targetId = btn.dataset.project;
         const targetPanel = document.getElementById(targetId);
-
         panels.forEach(p => p.classList.remove('active'));
         targetPanel.classList.add('active');
         targetPanel.scrollIntoView({ behavior: 'smooth' });
     });
 });
 
-// When the X button is clicked, close the panel and reset its PDF to page 1
 document.querySelectorAll('.close-panel').forEach(btn => {
     btn.addEventListener('click', () => {
         const panel = btn.closest('.project-panel');
@@ -84,17 +71,17 @@ document.querySelectorAll('.close-panel').forEach(btn => {
 
         const panelId = panel.id;
         if (panelId === 'project4') { circusPage  = 1; circusDoc  = null; circusAnimating  = false; }
+        if (panelId === 'project6') { vivaPage    = 1; vivaDoc    = null; vivaAnimating    = false; }
         if (panelId === 'project7') { minimalPage = 1; minimalDoc = null; minimalAnimating = false; }
         if (panelId === 'project8') { streetPage  = 1; streetDoc  = null; streetAnimating  = false; }
         if (panelId === 'project9') { bohoPage    = 1; bohoDoc    = null; bohoAnimating    = false; }
+        if (panelId === 'project5') resetGreek();
     });
 });
 
 
 // ----------------------------------------------------------------
 // PDF ERROR HANDLER
-// Displays a friendly error message inside the loading area
-// if a PDF fails to load (e.g. file not found or network issue).
 // ----------------------------------------------------------------
 function showPDFError(loadingEl, canvasEl) {
     loadingEl.innerHTML = `
@@ -111,9 +98,6 @@ function showPDFError(loadingEl, canvasEl) {
 
 // ----------------------------------------------------------------
 // MAIN PDF VIEWER (page5)
-// Displays the main fashion editorial PDF on page5.
-// Scale is calculated dynamically based on screen width
-// so it looks good on both desktop and mobile.
 // ----------------------------------------------------------------
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -125,13 +109,10 @@ const canvas = document.getElementById('bookCanvas');
 const ctx = canvas.getContext('2d');
 const loading = document.getElementById('bookLoading');
 
-// Calculates the render scale based on available screen width
 function getScale(page) {
     const baseViewport = page.getViewport({ scale: 1 });
     const isMobile = window.innerWidth <= 768;
-    const maxWidth = isMobile
-        ? window.innerWidth * 0.70
-        : window.innerWidth * 0.40;
+    const maxWidth = isMobile ? window.innerWidth * 0.70 : window.innerWidth * 0.40;
     return maxWidth / baseViewport.width;
 }
 
@@ -146,7 +127,6 @@ async function loadPDF() {
     }
 }
 
-// Renders a specific page with a slide-in animation from left or right
 async function renderPage(num, direction = 'right') {
     if (isAnimating) return;
     isAnimating = true;
@@ -161,11 +141,9 @@ async function renderPage(num, direction = 'right') {
 
         canvas.width = viewport.width;
         canvas.height = viewport.height;
-
         await page.render({ canvasContext: ctx, viewport }).promise;
 
         const slideIn = direction === 'right' ? '100%' : '-100%';
-
         loading.style.display = 'none';
         canvas.style.transition = 'none';
         canvas.style.transform = `translateX(${slideIn})`;
@@ -188,356 +166,137 @@ async function renderPage(num, direction = 'right') {
 }
 
 document.getElementById('prevPage').addEventListener('click', () => {
-    if (currentPage > 1 && !isAnimating) {
-        currentPage--;
-        renderPage(currentPage, 'left');
-    }
+    if (currentPage > 1 && !isAnimating) { currentPage--; renderPage(currentPage, 'left'); }
 });
 
 document.getElementById('nextPage').addEventListener('click', () => {
-    if (currentPage < pdfDoc.numPages && !isAnimating) {
-        currentPage++;
-        renderPage(currentPage, 'right');
-    }
+    if (currentPage < pdfDoc.numPages && !isAnimating) { currentPage++; renderPage(currentPage, 'right'); }
 });
 
-// Re-renders the current page when the browser window is resized
 window.addEventListener('resize', () => {
-    if (pdfDoc) {
-        isAnimating = false;
-        renderPage(currentPage, 'right');
-    }
+    if (pdfDoc) { isAnimating = false; renderPage(currentPage, 'right'); }
 });
 
-loadPDF();
+// Load page5 PDF lazily when the section becomes visible
+const page5Observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !pdfDoc) {
+            loadPDF();
+            page5Observer.disconnect();
+        }
+    });
+}, { threshold: 0.1 });
+page5Observer.observe(document.querySelector('.page5'));
 
 
 // ----------------------------------------------------------------
-// CIRCUS PDF VIEWER (project4)
-// Loads and renders the Circus project PDF.
-// PDF is loaded lazily — only when the panel is first opened.
-// Resets to page 1 every time the panel is reopened.
+// GENERIC PDF VIEWER FACTORY
+// Creates a reusable PDF viewer for any panel.
 // ----------------------------------------------------------------
-let circusDoc = null;
-let circusPage = 1;
-let circusAnimating = false;
-const circusCanvas = document.getElementById('circusCanvas');
-const circusCtx = circusCanvas.getContext('2d');
-const circusLoading = document.getElementById('circusLoading');
+function createPDFViewer({ pdfPath, canvasId, loadingId, prevId, nextId, projectSelector }) {
+    let doc = null;
+    let page = 1;
+    let animating = false;
+    const cvs = document.getElementById(canvasId);
+    const cvsCtx = cvs.getContext('2d');
+    const ldr = document.getElementById(loadingId);
 
-async function loadCircusPDF() {
-    try {
-        circusLoading.style.display = 'flex';
-        circusCanvas.style.display = 'none';
-        circusDoc = await pdfjsLib.getDocument('img/circus.pdf').promise;
-        renderCircusPage(circusPage);
-    } catch (err) {
-        showPDFError(circusLoading, circusCanvas);
+
+    async function load() {
+        try {
+            ldr.style.display = 'flex';
+            cvs.style.display = 'none';
+            doc = await pdfjsLib.getDocument(pdfPath).promise;
+            render(page);
+        } catch (err) {
+            showPDFError(ldr, cvs);
+        }
     }
+
+    async function render(num, direction = 'right') {
+        if (animating) return;
+        animating = true;
+
+        ldr.style.display = 'flex';
+        cvs.style.display = 'none';
+
+        try {
+            const p = await doc.getPage(num);
+            const viewport = p.getViewport({ scale: 1.5 });
+            cvs.width = viewport.width;
+            cvs.height = viewport.height;
+            await p.render({ canvasContext: cvsCtx, viewport }).promise;
+
+            const slideIn = direction === 'right' ? '100%' : '-100%';
+            ldr.style.display = 'none';
+            cvs.style.transition = 'none';
+            cvs.style.transform = `translateX(${slideIn})`;
+            cvs.style.opacity = '0';
+            cvs.style.display = 'block';
+
+            setTimeout(() => {
+                cvs.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+                cvs.style.transform = 'translateX(0)';
+                cvs.style.opacity = '1';
+                animating = false;
+            }, 20);
+
+        } catch (err) {
+            animating = false;
+            showPDFError(ldr, cvs);
+        }
+    }
+
+    document.getElementById(prevId).addEventListener('click', () => {
+        if (page > 1 && !animating) { page--; render(page, 'left'); }
+    });
+
+    document.getElementById(nextId).addEventListener('click', () => {
+        if (doc && page < doc.numPages && !animating) { page++; render(page, 'right'); }
+    });
+
+    document.querySelector(projectSelector).addEventListener('click', () => {
+        page = 1; doc = null; animating = false; load();
+    });
+
+    // Returns reset function for close-panel handler
+    return () => { page = 1; doc = null; animating = false; };
 }
 
-async function renderCircusPage(num, direction = 'right') {
-    if (circusAnimating) return;
-    circusAnimating = true;
-
-    circusLoading.style.display = 'flex';
-    circusCanvas.style.display = 'none';
-
-    try {
-        const page = await circusDoc.getPage(num);
-        const viewport = page.getViewport({ scale: 1.5 });
-        circusCanvas.width = viewport.width;
-        circusCanvas.height = viewport.height;
-        await page.render({ canvasContext: circusCtx, viewport }).promise;
-
-        const slideIn = direction === 'right' ? '100%' : '-100%';
-        circusLoading.style.display = 'none';
-        circusCanvas.style.transition = 'none';
-        circusCanvas.style.transform = `translateX(${slideIn})`;
-        circusCanvas.style.opacity = '0';
-        circusCanvas.style.display = 'block';
-
-        setTimeout(() => {
-            circusCanvas.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-            circusCanvas.style.transform = 'translateX(0)';
-            circusCanvas.style.opacity = '1';
-            circusAnimating = false;
-        }, 20);
-
-    } catch (err) {
-        circusAnimating = false;
-        showPDFError(circusLoading, circusCanvas);
-    }
-}
-
-document.getElementById('circusPrev').addEventListener('click', () => {
-    if (circusPage > 1 && !circusAnimating) {
-        circusPage--;
-        renderCircusPage(circusPage, 'left');
-    }
+// Create all PDF viewers
+const resetCircus  = createPDFViewer({ pdfPath: 'img/circus.pdf',  canvasId: 'circusCanvas',  loadingId: 'circusLoading',  prevId: 'circusPrev',  nextId: 'circusNext',  projectSelector: '[data-project="project4"]' });
+const resetViva    = createPDFViewer({ pdfPath: 'img/viva.pdf',    canvasId: 'vivaCanvas',    loadingId: 'vivaLoading',    prevId: 'vivaPrev',    nextId: 'vivaNext',    projectSelector: '[data-project="project6"]' });
+const resetMinimal = createPDFViewer({ pdfPath: 'img/minimal.pdf', canvasId: 'minimalCanvas', loadingId: 'minimalLoading', prevId: 'minimalPrev', nextId: 'minimalNext', projectSelector: '[data-project="project7"]' });
+const resetStreet  = createPDFViewer({ pdfPath: 'img/street.pdf',  canvasId: 'streetCanvas',  loadingId: 'streetLoading',  prevId: 'streetPrev',  nextId: 'streetNext',  projectSelector: '[data-project="project8"]' });
+const resetBoho    = createPDFViewer({ pdfPath: 'img/boho.pdf',    canvasId: 'bohoCanvas',    loadingId: 'bohoLoading',    prevId: 'bohoPrev',    nextId: 'bohoNext',    projectSelector: '[data-project="project9"]' });
+const resetGreek = createPDFViewer({ pdfPath: 'img/greek.pdf', canvasId: 'greekCanvas', loadingId: 'greekLoading', prevId: 'greekPrev', nextId: 'greekNext', projectSelector: '[data-project="project5"]' });
+const resetOnce = createPDFViewer({
+    pdfPath: 'img/once.pdf',
+    canvasId: 'onceCanvas',
+    loadingId: 'onceLoading',
+    prevId: 'oncePrev',
+    nextId: 'onceNext',
+    projectSelector: '[data-project="project1"]'
 });
+// Update close-panel to use reset functions
+document.querySelectorAll('.close-panel').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const panel = btn.closest('.project-panel');
+        panel.classList.remove('active');
 
-document.getElementById('circusNext').addEventListener('click', () => {
-    if (circusDoc && circusPage < circusDoc.numPages && !circusAnimating) {
-        circusPage++;
-        renderCircusPage(circusPage, 'right');
-    }
-});
-
-document.querySelector('[data-project="project4"]').addEventListener('click', () => {
-    circusPage = 1;
-    circusDoc = null;
-    circusAnimating = false;
-    loadCircusPDF();
-});
-
-
-// ----------------------------------------------------------------
-// BOHO PDF VIEWER (project9)
-// Loads and renders the Boho Look project PDF.
-// PDF is loaded lazily — only when the panel is first opened.
-// Resets to page 1 every time the panel is reopened.
-// ----------------------------------------------------------------
-let bohoDoc = null;
-let bohoPage = 1;
-let bohoAnimating = false;
-const bohoCanvas = document.getElementById('bohoCanvas');
-const bohoCtx = bohoCanvas.getContext('2d');
-const bohoLoading = document.getElementById('bohoLoading');
-
-async function loadBohoPDF() {
-    try {
-        bohoLoading.style.display = 'flex';
-        bohoCanvas.style.display = 'none';
-        bohoDoc = await pdfjsLib.getDocument('img/boho.pdf').promise;
-        renderBohoPage(bohoPage);
-    } catch (err) {
-        showPDFError(bohoLoading, bohoCanvas);
-    }
-}
-
-async function renderBohoPage(num, direction = 'right') {
-    if (bohoAnimating) return;
-    bohoAnimating = true;
-
-    bohoLoading.style.display = 'flex';
-    bohoCanvas.style.display = 'none';
-
-    try {
-        const page = await bohoDoc.getPage(num);
-        const viewport = page.getViewport({ scale: 1.5 });
-        bohoCanvas.width = viewport.width;
-        bohoCanvas.height = viewport.height;
-        await page.render({ canvasContext: bohoCtx, viewport }).promise;
-
-        const slideIn = direction === 'right' ? '100%' : '-100%';
-        bohoLoading.style.display = 'none';
-        bohoCanvas.style.transition = 'none';
-        bohoCanvas.style.transform = `translateX(${slideIn})`;
-        bohoCanvas.style.opacity = '0';
-        bohoCanvas.style.display = 'block';
-
-        setTimeout(() => {
-            bohoCanvas.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-            bohoCanvas.style.transform = 'translateX(0)';
-            bohoCanvas.style.opacity = '1';
-            bohoAnimating = false;
-        }, 20);
-
-    } catch (err) {
-        bohoAnimating = false;
-        showPDFError(bohoLoading, bohoCanvas);
-    }
-}
-
-document.getElementById('bohoPrev').addEventListener('click', () => {
-    if (bohoPage > 1 && !bohoAnimating) {
-        bohoPage--;
-        renderBohoPage(bohoPage, 'left');
-    }
-});
-
-document.getElementById('bohoNext').addEventListener('click', () => {
-    if (bohoDoc && bohoPage < bohoDoc.numPages && !bohoAnimating) {
-        bohoPage++;
-        renderBohoPage(bohoPage, 'right');
-    }
-});
-
-document.querySelector('[data-project="project9"]').addEventListener('click', () => {
-    bohoPage = 1;
-    bohoDoc = null;
-    bohoAnimating = false;
-    loadBohoPDF();
-});
-
-
-// ----------------------------------------------------------------
-// MINIMAL PDF VIEWER (project7)
-// Loads and renders the Minimal project PDF.
-// PDF is loaded lazily — only when the panel is first opened.
-// Resets to page 1 every time the panel is reopened.
-// ----------------------------------------------------------------
-let minimalDoc = null;
-let minimalPage = 1;
-let minimalAnimating = false;
-const minimalCanvas = document.getElementById('minimalCanvas');
-const minimalCtx = minimalCanvas.getContext('2d');
-const minimalLoading = document.getElementById('minimalLoading');
-
-async function loadMinimalPDF() {
-    try {
-        minimalLoading.style.display = 'flex';
-        minimalCanvas.style.display = 'none';
-        minimalDoc = await pdfjsLib.getDocument('img/minimal.pdf').promise;
-        renderMinimalPage(minimalPage);
-    } catch (err) {
-        showPDFError(minimalLoading, minimalCanvas);
-    }
-}
-
-async function renderMinimalPage(num, direction = 'right') {
-    if (minimalAnimating) return;
-    minimalAnimating = true;
-
-    minimalLoading.style.display = 'flex';
-    minimalCanvas.style.display = 'none';
-
-    try {
-        const page = await minimalDoc.getPage(num);
-        const viewport = page.getViewport({ scale: 1.5 });
-        minimalCanvas.width = viewport.width;
-        minimalCanvas.height = viewport.height;
-        await page.render({ canvasContext: minimalCtx, viewport }).promise;
-
-        const slideIn = direction === 'right' ? '100%' : '-100%';
-        minimalLoading.style.display = 'none';
-        minimalCanvas.style.transition = 'none';
-        minimalCanvas.style.transform = `translateX(${slideIn})`;
-        minimalCanvas.style.opacity = '0';
-        minimalCanvas.style.display = 'block';
-
-        setTimeout(() => {
-            minimalCanvas.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-            minimalCanvas.style.transform = 'translateX(0)';
-            minimalCanvas.style.opacity = '1';
-            minimalAnimating = false;
-        }, 20);
-
-    } catch (err) {
-        minimalAnimating = false;
-        showPDFError(minimalLoading, minimalCanvas);
-    }
-}
-
-document.getElementById('minimalPrev').addEventListener('click', () => {
-    if (minimalPage > 1 && !minimalAnimating) {
-        minimalPage--;
-        renderMinimalPage(minimalPage, 'left');
-    }
-});
-
-document.getElementById('minimalNext').addEventListener('click', () => {
-    if (minimalDoc && minimalPage < minimalDoc.numPages && !minimalAnimating) {
-        minimalPage++;
-        renderMinimalPage(minimalPage, 'right');
-    }
-});
-
-document.querySelector('[data-project="project7"]').addEventListener('click', () => {
-    minimalPage = 1;
-    minimalDoc = null;
-    minimalAnimating = false;
-    loadMinimalPDF();
-});
-
-
-// ----------------------------------------------------------------
-// STREET PDF VIEWER (project8)
-// Loads and renders the Street Fashion project PDF.
-// PDF is loaded lazily — only when the panel is first opened.
-// Resets to page 1 every time the panel is reopened.
-// ----------------------------------------------------------------
-let streetDoc = null;
-let streetPage = 1;
-let streetAnimating = false;
-const streetCanvas = document.getElementById('streetCanvas');
-const streetCtx = streetCanvas.getContext('2d');
-const streetLoading = document.getElementById('streetLoading');
-
-async function loadStreetPDF() {
-    try {
-        streetLoading.style.display = 'flex';
-        streetCanvas.style.display = 'none';
-        streetDoc = await pdfjsLib.getDocument('img/street.pdf').promise;
-        renderStreetPage(streetPage);
-    } catch (err) {
-        showPDFError(streetLoading, streetCanvas);
-    }
-}
-
-async function renderStreetPage(num, direction = 'right') {
-    if (streetAnimating) return;
-    streetAnimating = true;
-
-    streetLoading.style.display = 'flex';
-    streetCanvas.style.display = 'none';
-
-    try {
-        const page = await streetDoc.getPage(num);
-        const viewport = page.getViewport({ scale: 1.5 });
-        streetCanvas.width = viewport.width;
-        streetCanvas.height = viewport.height;
-        await page.render({ canvasContext: streetCtx, viewport }).promise;
-
-        const slideIn = direction === 'right' ? '100%' : '-100%';
-        streetLoading.style.display = 'none';
-        streetCanvas.style.transition = 'none';
-        streetCanvas.style.transform = `translateX(${slideIn})`;
-        streetCanvas.style.opacity = '0';
-        streetCanvas.style.display = 'block';
-
-        setTimeout(() => {
-            streetCanvas.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-            streetCanvas.style.transform = 'translateX(0)';
-            streetCanvas.style.opacity = '1';
-            streetAnimating = false;
-        }, 20);
-
-    } catch (err) {
-        streetAnimating = false;
-        showPDFError(streetLoading, streetCanvas);
-    }
-}
-
-document.getElementById('streetPrev').addEventListener('click', () => {
-    if (streetPage > 1 && !streetAnimating) {
-        streetPage--;
-        renderStreetPage(streetPage, 'left');
-    }
-});
-
-document.getElementById('streetNext').addEventListener('click', () => {
-    if (streetDoc && streetPage < streetDoc.numPages && !streetAnimating) {
-        streetPage++;
-        renderStreetPage(streetPage, 'right');
-    }
-});
-
-document.querySelector('[data-project="project8"]').addEventListener('click', () => {
-    streetPage = 1;
-    streetDoc = null;
-    streetAnimating = false;
-    loadStreetPDF();
+        const panelId = panel.id;
+        if (panelId === 'project4') resetCircus();
+        if (panelId === 'project6') resetViva();
+        if (panelId === 'project7') resetMinimal();
+        if (panelId === 'project8') resetStreet();
+        if (panelId === 'project9') resetBoho();
+        if (panelId === 'project1') resetOnce();
+    });
 });
 
 
 // ----------------------------------------------------------------
 // SWIPE SUPPORT
-// Adds touch swipe detection to PDF canvases on mobile.
-// Swiping left goes to the next page, swiping right goes back.
-// Only triggers if the horizontal movement is greater than 50px
-// and greater than the vertical movement (to avoid scroll conflicts).
 // ----------------------------------------------------------------
 function addSwipe(element, onLeft, onRight) {
     let startX = 0;
@@ -564,26 +323,49 @@ addSwipe(document.getElementById('bookCanvas'),
     () => { if (currentPage > 1 && !isAnimating) { currentPage--; renderPage(currentPage, 'left'); }}
 );
 
-addSwipe(document.getElementById('minimalCanvas'),
-    () => { if (minimalPage < minimalDoc?.numPages && !minimalAnimating) { minimalPage++; renderMinimalPage(minimalPage, 'right'); }},
-    () => { if (minimalPage > 1 && !minimalAnimating) { minimalPage--; renderMinimalPage(minimalPage, 'left'); }}
-);
+// For panel PDFs, swipe is handled via the canvas elements directly
+['circusCanvas','vivaCanvas','minimalCanvas','streetCanvas','bohoCanvas','greekCanvas','onceCanvas'].forEach(id => {
+    const el = document.getElementById(id);
+    const prevBtn = document.getElementById(id.replace('Canvas', 'Prev'));
+    const nextBtn = document.getElementById(id.replace('Canvas', 'Next'));
+    addSwipe(el,
+        () => nextBtn.click(),
+        () => prevBtn.click()
+    );
+});
+// ----------------------------------------------------------------
+// PAGE7 TABS
+// Switches between the two extra projects.
+// ----------------------------------------------------------------
+document.querySelectorAll('.page7-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.page7-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.page7-panel').forEach(p => p.classList.remove('active'));
 
-addSwipe(document.getElementById('streetCanvas'),
-    () => { if (streetPage < streetDoc?.numPages && !streetAnimating) { streetPage++; renderStreetPage(streetPage, 'right'); }},
-    () => { if (streetPage > 1 && !streetAnimating) { streetPage--; renderStreetPage(streetPage, 'left'); }}
-);
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+});
+const page7 = document.querySelector('.page7');
 
-addSwipe(document.getElementById('bohoCanvas'),
-    () => { if (bohoPage < bohoDoc?.numPages && !bohoAnimating) { bohoPage++; renderBohoPage(bohoPage, 'right'); }},
-    () => { if (bohoPage > 1 && !bohoAnimating) { bohoPage--; renderBohoPage(bohoPage, 'left'); }}
-);
+const strokes = [
+    { color: '#c77d9c', size: '300px', top: '10%',  left: '5%',  delay: '0s',   duration: '6s' },
+    { color: '#e8a4c4', size: '200px', top: '50%',  left: '70%', delay: '1.5s', duration: '7s' },
+    { color: '#8a4a68', size: '150px', top: '20%',  left: '80%', delay: '3s',   duration: '5s' },
+    { color: '#f0c0d8', size: '250px', top: '70%',  left: '20%', delay: '2s',   duration: '8s' },
+    { color: '#c77d9c', size: '180px', top: '80%',  left: '60%', delay: '4s',   duration: '6s' },
+    { color: '#e8a4c4', size: '220px', top: '40%',  left: '40%', delay: '0.5s', duration: '9s' },
+];
 
-addSwipe(document.getElementById('circusCanvas'),
-    () => { if (circusPage < circusDoc?.numPages && !circusAnimating) { circusPage++; renderCircusPage(circusPage, 'right'); }},
-    () => { if (circusPage > 1 && !circusAnimating) { circusPage--; renderCircusPage(circusPage, 'left'); }}
-);
-// pdf viewer for page5
-function openFullPdf() {
-    window.open('img/page5_pdf.pdf', '_blank');
-}
+strokes.forEach(s => {
+    const el = document.createElement('div');
+    el.classList.add('brushstroke');
+    el.style.width = s.size;
+    el.style.height = s.size;
+    el.style.top = s.top;
+    el.style.left = s.left;
+    el.style.background = s.color;
+    el.style.animationDelay = s.delay;
+    el.style.animationDuration = s.duration;
+    page7.appendChild(el);
+});
