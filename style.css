@@ -993,22 +993,6 @@ img {
     overflow: hidden;
     position: relative;
 }
-
-.brushstroke {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0;
-    animation: paintIn ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes paintIn {
-    0%   { opacity: 0; transform: scale(0.5); }
-    30%  { opacity: 0.5; transform: scale(1.2); }
-    60%  { opacity: 0.3; transform: scale(1); }
-    100% { opacity: 0; transform: scale(0.8); }
-}
 #onceCanvas {
     display: block;
     width: 450px !important;
@@ -1021,7 +1005,4 @@ img {
         width: 240px !important;
         max-width: 240px !important;
     }
-}
-.brushstroke {
-    will-change: transform, opacity;
 }

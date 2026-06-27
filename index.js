@@ -346,36 +346,3 @@ document.querySelectorAll('.page7-tab').forEach(tab => {
         document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
     });
 });
-const page7 = document.querySelector('.page7');
-
-const strokes = [
-    { color: '#c77d9c', size: '300px', top: '10%',  left: '5%',  delay: '0s',   duration: '6s' },
-    { color: '#e8a4c4', size: '200px', top: '50%',  left: '70%', delay: '1.5s', duration: '7s' },
-    { color: '#8a4a68', size: '150px', top: '20%',  left: '80%', delay: '3s',   duration: '5s' },
-    { color: '#f0c0d8', size: '250px', top: '70%',  left: '20%', delay: '2s',   duration: '8s' },
-    { color: '#c77d9c', size: '180px', top: '80%',  left: '60%', delay: '4s',   duration: '6s' },
-    { color: '#e8a4c4', size: '220px', top: '40%',  left: '40%', delay: '0.5s', duration: '9s' },
-];
-
-// Δημιουργεί τα brushstrokes μόνο όταν φαίνεται το page7
-const page7BrushObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            strokes.forEach(s => {
-                const el = document.createElement('div');
-                el.classList.add('brushstroke');
-                el.style.width = s.size;
-                el.style.height = s.size;
-                el.style.top = s.top;
-                el.style.left = s.left;
-                el.style.background = s.color;
-                el.style.animationDelay = s.delay;
-                el.style.animationDuration = s.duration;
-                page7.appendChild(el);
-            });
-            page7BrushObserver.disconnect();
-        }
-    });
-}, { threshold: 0.1 });
-
-page7BrushObserver.observe(page7);
