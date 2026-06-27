@@ -120,7 +120,7 @@ async function loadPDF() {
     try {
         loading.style.display = 'flex';
         canvas.style.display = 'none';
-        pdfDoc = await pdfjsLib.getDocument('img/page5_pdf.pdf').promise;
+        pdfDoc = await pdfjsLib.getDocument('img/pdfs/page5_pdf.pdf').promise;
         renderPage(currentPage);
     } catch (err) {
         showPDFError(loading, canvas);
@@ -264,14 +264,14 @@ function createPDFViewer({ pdfPath, canvasId, loadingId, prevId, nextId, project
 }
 
 // Create all PDF viewers
-const resetCircus  = createPDFViewer({ pdfPath: 'img/circus.pdf',  canvasId: 'circusCanvas',  loadingId: 'circusLoading',  prevId: 'circusPrev',  nextId: 'circusNext',  projectSelector: '[data-project="project4"]' });
-const resetViva    = createPDFViewer({ pdfPath: 'img/viva.pdf',    canvasId: 'vivaCanvas',    loadingId: 'vivaLoading',    prevId: 'vivaPrev',    nextId: 'vivaNext',    projectSelector: '[data-project="project6"]' });
-const resetMinimal = createPDFViewer({ pdfPath: 'img/minimal.pdf', canvasId: 'minimalCanvas', loadingId: 'minimalLoading', prevId: 'minimalPrev', nextId: 'minimalNext', projectSelector: '[data-project="project7"]' });
-const resetStreet  = createPDFViewer({ pdfPath: 'img/street.pdf',  canvasId: 'streetCanvas',  loadingId: 'streetLoading',  prevId: 'streetPrev',  nextId: 'streetNext',  projectSelector: '[data-project="project8"]' });
-const resetBoho    = createPDFViewer({ pdfPath: 'img/boho.pdf',    canvasId: 'bohoCanvas',    loadingId: 'bohoLoading',    prevId: 'bohoPrev',    nextId: 'bohoNext',    projectSelector: '[data-project="project9"]' });
-const resetGreek = createPDFViewer({ pdfPath: 'img/greek.pdf', canvasId: 'greekCanvas', loadingId: 'greekLoading', prevId: 'greekPrev', nextId: 'greekNext', projectSelector: '[data-project="project5"]' });
+const resetCircus  = createPDFViewer({ pdfPath: 'img/pdfs/circus.pdf',  canvasId: 'circusCanvas',  loadingId: 'circusLoading',  prevId: 'circusPrev',  nextId: 'circusNext',  projectSelector: '[data-project="project4"]' });
+const resetViva    = createPDFViewer({ pdfPath: 'img/pdfs/viva.pdf',    canvasId: 'vivaCanvas',    loadingId: 'vivaLoading',    prevId: 'vivaPrev',    nextId: 'vivaNext',    projectSelector: '[data-project="project6"]' });
+const resetMinimal = createPDFViewer({ pdfPath: 'img/pdfs/minimal.pdf', canvasId: 'minimalCanvas', loadingId: 'minimalLoading', prevId: 'minimalPrev', nextId: 'minimalNext', projectSelector: '[data-project="project7"]' });
+const resetStreet  = createPDFViewer({ pdfPath: 'img/pdfs/street.pdf',  canvasId: 'streetCanvas',  loadingId: 'streetLoading',  prevId: 'streetPrev',  nextId: 'streetNext',  projectSelector: '[data-project="project8"]' });
+const resetBoho    = createPDFViewer({ pdfPath: 'img/pdfs/boho.pdf',    canvasId: 'bohoCanvas',    loadingId: 'bohoLoading',    prevId: 'bohoPrev',    nextId: 'bohoNext',    projectSelector: '[data-project="project9"]' });
+const resetGreek = createPDFViewer({ pdfPath: 'img/pdfs/greek.pdf', canvasId: 'greekCanvas', loadingId: 'greekLoading', prevId: 'greekPrev', nextId: 'greekNext', projectSelector: '[data-project="project5"]' });
 const resetOnce = createPDFViewer({
-    pdfPath: 'img/Once.pdf',
+    pdfPath: 'img/pdfs/Once.pdf',
     canvasId: 'onceCanvas',
     loadingId: 'onceLoading',
     prevId: 'oncePrev',
@@ -279,7 +279,7 @@ const resetOnce = createPDFViewer({
     projectSelector: '[data-project="project1"]'
 });
 const resetBusiness = createPDFViewer({
-    pdfPath: 'img/business.pdf',
+    pdfPath: 'img/pdfs/business.pdf',
     canvasId: 'businessCanvas',
     loadingId: 'businessLoading',
     prevId: 'businessPrev',
