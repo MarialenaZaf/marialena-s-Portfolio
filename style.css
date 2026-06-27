@@ -952,6 +952,11 @@ img {
     transform: scale(1.03);
 }
 
+.flapper-img {
+    width: 550px !important;
+    max-width: 550px !important;
+}
+
 @media (max-width: 768px) {
     .page7-title {
         font-size: 1.4rem;
@@ -982,10 +987,6 @@ img {
         font-size: 0.75rem;
         padding: 8px 12px;
     }
-}
-.flapper-img {
-    width: 550px !important;
-    max-width: 550px !important;
 }
 .page7 {
     background: #f7e3ec;
