@@ -271,7 +271,7 @@ const resetStreet  = createPDFViewer({ pdfPath: 'img/street.pdf',  canvasId: 'st
 const resetBoho    = createPDFViewer({ pdfPath: 'img/boho.pdf',    canvasId: 'bohoCanvas',    loadingId: 'bohoLoading',    prevId: 'bohoPrev',    nextId: 'bohoNext',    projectSelector: '[data-project="project9"]' });
 const resetGreek = createPDFViewer({ pdfPath: 'img/greek.pdf', canvasId: 'greekCanvas', loadingId: 'greekLoading', prevId: 'greekPrev', nextId: 'greekNext', projectSelector: '[data-project="project5"]' });
 const resetOnce = createPDFViewer({
-    pdfPath: 'img/once.pdf',
+    pdfPath: 'img/Once.pdf',
     canvasId: 'onceCanvas',
     loadingId: 'onceLoading',
     prevId: 'oncePrev',
