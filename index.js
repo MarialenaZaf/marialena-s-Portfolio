@@ -278,6 +278,14 @@ const resetOnce = createPDFViewer({
     nextId: 'onceNext',
     projectSelector: '[data-project="project1"]'
 });
+const resetBusiness = createPDFViewer({
+    pdfPath: 'img/business.pdf',
+    canvasId: 'businessCanvas',
+    loadingId: 'businessLoading',
+    prevId: 'businessPrev',
+    nextId: 'businessNext',
+    projectSelector: '[data-project="project2"]'
+});
 // Update close-panel to use reset functions
 document.querySelectorAll('.close-panel').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -291,6 +299,7 @@ document.querySelectorAll('.close-panel').forEach(btn => {
         if (panelId === 'project8') resetStreet();
         if (panelId === 'project9') resetBoho();
         if (panelId === 'project1') resetOnce();
+        if (panelId === 'project2') resetBusiness();
     });
 });
 
@@ -324,7 +333,7 @@ addSwipe(document.getElementById('bookCanvas'),
 );
 
 // For panel PDFs, swipe is handled via the canvas elements directly
-['circusCanvas','vivaCanvas','minimalCanvas','streetCanvas','bohoCanvas','greekCanvas','onceCanvas'].forEach(id => {
+['circusCanvas','vivaCanvas','minimalCanvas','streetCanvas','bohoCanvas','greekCanvas','onceCanvas','businessCanvas'].forEach(id => {
     const el = document.getElementById(id);
     const prevBtn = document.getElementById(id.replace('Canvas', 'Prev'));
     const nextBtn = document.getElementById(id.replace('Canvas', 'Next'));

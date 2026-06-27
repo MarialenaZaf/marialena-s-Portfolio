@@ -113,9 +113,21 @@
 
     <div class="project-panel" id="project2">
         <button class="close-panel">✕</button>
-        <h2>Project 2</h2>
-        <img src="img/projects/project2.jpg" alt="Project 2">
-        <p>Περιγραφή εργασίας 2.</p>
+        <h2>Business Casual Office Wear</h2>
+        <div class="panel-book-viewer">
+            <button class="panel-arrow" id="businessPrev">&#8249;</button>
+            <div class="panel-canvas-wrapper">
+                <canvas id="businessCanvas"></canvas>
+                <div class="panel-loading" id="businessLoading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading...</p>
+                </div>
+            </div>
+            <button class="panel-arrow" id="businessNext">&#8250;</button>
+        </div>
+        <a href="img/business.pdf" target="_blank" class="pdf-link">
+            <i class="fas fa-file-pdf"></i> View full PDF
+        </a>
     </div>
 
     <div class="project-panel" id="project3">
@@ -280,7 +292,7 @@
 
             <div class="page7-tabs">
                 <button class="page7-tab active" data-tab="gen">
-                    LED Geometric Bodysuit
+                    Next Generation Fashion
                 </button>
                 <button class="page7-tab" data-tab="flapper">
                     Flapper Reborn
