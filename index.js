@@ -25,7 +25,7 @@ const messageInterval = setInterval(() => {
     setTimeout(() => {
         msgEl.textContent = messages[msgIndex];
         msgEl.style.opacity = '1';
-    }, 300);
+    }, 500);
 }, 1500);
 
 window.addEventListener('load', () => {
