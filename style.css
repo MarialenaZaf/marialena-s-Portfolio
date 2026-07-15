@@ -1019,3 +1019,14 @@ img {
         max-width: 240px !important;
     }
 }
+.wildglam-img {
+    width: 480px !important;
+    max-width: 580px !important;
+}
+
+@media (max-width: 768px) {
+    .wildglam-img {
+        width: 250px !important;
+        max-width: 250px !important;
+    }
+}
