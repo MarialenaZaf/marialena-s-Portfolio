@@ -231,7 +231,7 @@ All portfolio content, including artwork, fashion designs, illustrations, brandi
 
 ---
 
-## Author
+## Canvas Creator
 
 **Marialena Zafeiriou**
 
@@ -243,4 +243,11 @@ Specializations:
 - Fashion Illustration
 - Styling
 - Trend Forecasting
+
+## Coded by 
+
+**Pashalis Koukos**
+
+Undergraduate Student in Informatics and Telematics at Harokopio University of Athens. 
 ```
+
