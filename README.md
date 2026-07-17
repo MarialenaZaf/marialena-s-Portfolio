@@ -140,13 +140,10 @@ Fashion-Portfolio/
 ├── 404.html
 │
 ├── img/
-│   ├── projects/
-│   ├── illustrations/
-│   ├── icons/
+│   ├── covers/
+│   ├── pdfs/
 │   └── ...
 │
-├── pdf/
-│   └── portfolio.pdf
 │
 └── README.md
 ```
