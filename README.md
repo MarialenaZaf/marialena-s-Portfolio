@@ -248,6 +248,5 @@ Specializations:
 
 **Pashalis Koukos**
 
-Undergraduate Student in Informatics and Telematics at Harokopio University of Athens. 
-```
+Undergraduate Student in Informatics and Telematics at Harokopio University of Athens.
 
