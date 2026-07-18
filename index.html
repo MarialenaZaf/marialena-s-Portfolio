@@ -7,63 +7,105 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Marialena Zafeiriou — Fashion Portfolio</title>
 
-    <!-- SEO & Social -->
+    <!-- ============================================================
+         SEO & SOCIAL META TAGS
+         These tags control how the page appears when shared on
+         social media platforms like LinkedIn, Facebook, WhatsApp.
+         The og:image should be a horizontal image for best results.
+    ============================================================ -->
     <meta name="description" content="Fashion Design Portfolio by Marialena Zafeiriou — IEK AKMI Thessaloniki. Fashion illustration, styling projects, trend forecasting.">
     <meta name="author" content="Marialena Zafeiriou">
     <meta name="keywords" content="fashion design, portfolio, styling, Thessaloniki, IEK AKMI, Marialena Zafeiriou">
 
-    <!-- Open Graph -->
+    <!-- Open Graph — used by Facebook, LinkedIn, WhatsApp -->
     <meta property="og:title" content="Marialena Zafeiriou — Fashion Portfolio">
     <meta property="og:description" content="Fashion Design Portfolio — Styling, Illustration & Trend Forecasting">
     <meta property="og:image" content="https://marialenazaf.github.io/marialena-s-Portfolio/img/back1.png">
     <meta property="og:url" content="https://marialenazaf.github.io/marialena-s-Portfolio/">
     <meta property="og:type" content="website">
 
-    <!-- Twitter/X -->
+    <!-- Twitter/X card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Marialena Zafeiriou — Fashion Portfolio">
     <meta name="twitter:description" content="Fashion Design Portfolio — Styling, Illustration & Trend Forecasting">
     <meta name="twitter:image" content="https://marialenazaf.github.io/marialena-s-Portfolio/img/back1.png">
 
-    <!-- Styles & Preload -->
+    <!-- ============================================================
+         PERFORMANCE
+         Preload the first visible image so it loads as fast as
+         possible, avoiding a blank flash on page load.
+    ============================================================ -->
     <link rel="preload" as="image" href="img/back1.png">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/fashion-svgrepo-com.svg">
+
+    <!-- Font Awesome icons (used for social links, PDF icon, spinner) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-    <div id="rotate-message">
-        <div class="rotate-icon">↻</div>
-        <p class="main-text">Παρακαλώ γυρίστε τη συσκευή σε κάθετη θέση</p>
-        <p class="sub-text">Please rotate your device to portrait mode</p>
-    </div>
 
-    <div id="splash-screen">
-        <div class="splash-content">
-            <img src="img/fashion-svgrepo-com.svg" alt="Logo" class="splash-logo">
-            <p class="splash-title">Marialena Zafeiriou</p>
-            <p class="splash-subtitle" id="splashMessage">Preparing something beautiful for you...</p>
-            <div class="splash-dots">
-                <span></span><span></span><span></span>
-            </div>
+<!-- ============================================================
+     ROTATE MESSAGE
+     Shown when the device is in landscape mode.
+     Hidden via CSS when in portrait mode.
+============================================================ -->
+<div id="rotate-message">
+    <div class="rotate-icon">↻</div>
+    <p class="main-text">Παρακαλώ γυρίστε τη συσκευή σε κάθετη θέση</p>
+    <p class="sub-text">Please rotate your device to portrait mode</p>
+</div>
+
+<!-- ============================================================
+     SPLASH SCREEN
+     Shown while the page is loading.
+     Rotating messages are handled in index.js.
+     Hidden automatically after page load.
+============================================================ -->
+<div id="splash-screen">
+    <div class="splash-content">
+        <img src="img/fashion-svgrepo-com.svg" alt="Logo" class="splash-logo">
+        <p class="splash-title">Marialena Zafeiriou</p>
+        <p class="splash-subtitle" id="splashMessage">Preparing something beautiful for you...</p>
+        <div class="splash-dots">
+            <span></span><span></span><span></span>
         </div>
     </div>
+</div>
 
 
-    <section class="page1">
-        <img src="img/back1.png" alt="Cover">
-        <img class="needleThread" src="img/needle-and-thread-svgrepo-com.svg" alt="" aria-hidden="true">
-    </section>
+<!-- ============================================================
+     PAGE 1 — Cover / Hero
+     The needle animation is purely decorative (aria-hidden).
+     No lazy loading here — this is the first visible section.
+============================================================ -->
+<section class="page1 fade-section">
+    <img src="img/back1.png" alt="Fashion portfolio cover page">
+    <img class="needleThread" src="img/needle-and-thread-svgrepo-com.svg" alt="" aria-hidden="true">
+</section>
 
-    <section class="page2">
-        <img src="img/back2.png" alt="Cover">
-    </section>
+<!-- ============================================================
+     PAGE 2 — About / Introduction
+     loading="lazy" defers loading until the user scrolls near.
+============================================================ -->
+<section class="page2 fade-section">
+    <img src="img/back2.png" alt="About Marialena Zafeiriou" loading="lazy">
+</section>
 
-    <section class="page3">
-        <img src="img/back3.png" alt="Cover">
-        <svg class="stitchLine" aria-hidden="true" viewBox="0 0 60 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path class="stitchPath"
-                  d="M 30 130
+<!-- ============================================================
+     PAGE 3 — Skills & Experience
+     Contains the animated SVG stitch line decoration.
+============================================================ -->
+<section class="page3 fade-section">
+    <img src="img/back3.png" alt="Skills and experience page" loading="lazy">
+
+    <!-- Animated stitch SVG — purely decorative -->
+    <svg class="stitchLine" aria-hidden="true" viewBox="0 0 60 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path class="stitchPath"
+              d="M 30 130
                      Q 50 170, 30 210
                      Q 10 250, 30 290
                      Q 50 330, 30 370
@@ -73,314 +115,393 @@
                      Q 50 650, 30 690
                      Q 10 730, 30 770
                      Q 50 790, 30 796"
-                  fill="none" stroke="#c77d9c" stroke-width="3"
-                  stroke-linecap="round" stroke-dasharray="10 8"/>
-            <g class="stitchNeedle">
-                <line x1="30" y1="90" x2="30" y2="145" stroke="#5c2f45" stroke-width="4" stroke-linecap="round"/>
-                <ellipse cx="30" cy="90" rx="4.5" ry="9" fill="none" stroke="#5c2f45" stroke-width="3.5"/>
-            </g>
-        </svg>
-    </section>
+              fill="none" stroke="#c77d9c" stroke-width="3"
+              stroke-linecap="round" stroke-dasharray="10 8"/>
+        <g class="stitchNeedle">
+            <line x1="30" y1="90" x2="30" y2="145" stroke="#5c2f45" stroke-width="4" stroke-linecap="round"/>
+            <ellipse cx="30" cy="90" rx="4.5" ry="9" fill="none" stroke="#5c2f45" stroke-width="3.5"/>
+        </g>
+    </svg>
+</section>
 
-    <section class="page4">
-        <img src="img/back4.png" alt="Cover">
-        <div class="covers-grid">
-            <img src="img/covers/cover1.jpg" alt="Cover 1" class="cover-btn" data-project="project1" title="Once upon a time...">
-            <img src="img/covers/cover2.png" alt="Cover 2" class="cover-btn" data-project="project2" title="Business casual office wear">
-            <img src="img/covers/cover3.png" alt="Cover 3" class="cover-btn" data-project="project3" title="Architecture to Fashion">
-            <img src="img/covers/cover4.png" alt="Cover 4" class="cover-btn" data-project="project4" title="Circus">
-            <img src="img/covers/cover5.png" alt="Cover 5" class="cover-btn" data-project="project5" title="Modern looks Greek roots">
-            <img src="img/covers/cover6.png" alt="Cover 6" class="cover-btn" data-project="project6" title="Rococo">
-        </div>
-    </section>
+<!-- ============================================================
+     PAGE 4 — Fashion Design Projects Grid
+     Each cover image is a clickable button that opens the
+     corresponding project panel below.
+     data-project must match the panel id (e.g. "project1").
+============================================================ -->
+<section class="page4 fade-section">
+    <img src="img/back4.png" alt="Fashion design projects" loading="lazy">
+    <div class="covers-grid">
+        <img src="img/covers/cover1.jpg" alt="Once upon a time project cover"      class="cover-btn" data-project="project1" title="Once upon a time..."         loading="lazy">
+        <img src="img/covers/cover2.png" alt="Business casual project cover"       class="cover-btn" data-project="project2" title="Business casual office wear" loading="lazy">
+        <img src="img/covers/cover3.png" alt="Architecture to fashion project cover" class="cover-btn" data-project="project3" title="Architecture to Fashion"   loading="lazy">
+        <img src="img/covers/cover4.png" alt="Circus project cover"                class="cover-btn" data-project="project4" title="Circus"                      loading="lazy">
+        <img src="img/covers/cover5.png" alt="Modern looks Greek roots cover"      class="cover-btn" data-project="project5" title="Modern looks Greek roots"    loading="lazy">
+        <img src="img/covers/cover6.png" alt="Rococo project cover"                class="cover-btn" data-project="project6" title="Rococo"                      loading="lazy">
+    </div>
+</section>
 
-    <!-- Project Panels — αμέσως μετά το page4 -->
-    <div class="project-panel" id="project1">
-        <button class="close-panel">✕</button>
-        <h2>Once Upon a Time...</h2>
-        <div class="panel-book-viewer">
-            <button class="panel-arrow" id="oncePrev">&#8249;</button>
-            <div class="panel-canvas-wrapper">
-                <canvas id="onceCanvas"></canvas>
-                <div class="panel-loading" id="onceLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
+<!-- ============================================================
+     PROJECT PANELS (page4 projects)
+     Each panel is hidden by default (display:none via CSS).
+     Opened when the matching cover is clicked.
+     Closed via the X button (.close-panel).
+     PDF viewers are initialized lazily in index.js.
+============================================================ -->
+
+<!-- Project 1: Once Upon a Time -->
+<div class="project-panel" id="project1">
+    <button class="close-panel">✕</button>
+    <h2>Once Upon a Time...</h2>
+    <div class="panel-book-viewer">
+        <button class="panel-arrow" id="oncePrev">&#8249;</button>
+        <div class="panel-canvas-wrapper">
+            <canvas id="onceCanvas"></canvas>
+            <div class="panel-loading" id="onceLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
             </div>
-            <button class="panel-arrow" id="onceNext">&#8250;</button>
         </div>
-        <a href="img/pdfs/Once.pdf" target="_blank" class="pdf-link">
-            <i class="fas fa-file-pdf"></i> View full PDF
-        </a>
+        <button class="panel-arrow" id="onceNext">&#8250;</button>
+    </div>
+    <a href="img/pdfs/Once.pdf" target="_blank" class="pdf-link">
+        <i class="fas fa-file-pdf"></i> View full PDF
+    </a>
+</div>
+
+<!-- Project 2: Business Casual Office Wear -->
+<div class="project-panel" id="project2">
+    <button class="close-panel">✕</button>
+    <h2>Business Casual<br>Office Wear</h2>
+    <div class="panel-book-viewer">
+        <button class="panel-arrow" id="businessPrev">&#8249;</button>
+        <div class="panel-canvas-wrapper">
+            <canvas id="businessCanvas"></canvas>
+            <div class="panel-loading" id="businessLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+        <button class="panel-arrow" id="businessNext">&#8250;</button>
+    </div>
+    <a href="img/pdfs/business.pdf" target="_blank" class="pdf-link">
+        <i class="fas fa-file-pdf"></i> View full PDF
+    </a>
+</div>
+
+<!-- Project 3: Architecture to Fashion (in progress) -->
+<div class="project-panel" id="project3">
+    <button class="close-panel">✕</button>
+    <h2>Architecture to Fashion</h2>
+    <p style="text-align:center; color:#c77d9c; font-family:'Playfair Display',serif; padding:40px;">Coming soon...</p>
+</div>
+
+<!-- Project 4: Circus -->
+<div class="project-panel" id="project4">
+    <button class="close-panel">✕</button>
+    <h2>BRIGHT AND BOLD<br>CIRCUS</h2>
+    <div class="panel-book-viewer">
+        <button class="panel-arrow" id="circusPrev">&#8249;</button>
+        <div class="panel-canvas-wrapper">
+            <canvas id="circusCanvas"></canvas>
+            <div class="panel-loading" id="circusLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+        <button class="panel-arrow" id="circusNext">&#8250;</button>
+    </div>
+    <a href="img/pdfs/circus.pdf" target="_blank" class="pdf-link">
+        <i class="fas fa-file-pdf"></i> View full PDF
+    </a>
+</div>
+
+<!-- Project 5: Modern Looks Greek Roots -->
+<div class="project-panel" id="project5">
+    <button class="close-panel">✕</button>
+    <h2>Modern Looks Greek<br>Roots</h2>
+    <div class="panel-book-viewer">
+        <button class="panel-arrow" id="greekPrev">&#8249;</button>
+        <div class="panel-canvas-wrapper">
+            <canvas id="greekCanvas"></canvas>
+            <div class="panel-loading" id="greekLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+        <button class="panel-arrow" id="greekNext">&#8250;</button>
+    </div>
+    <a href="img/pdfs/greek.pdf" target="_blank" class="pdf-link">
+        <i class="fas fa-file-pdf"></i> View full PDF
+    </a>
+</div>
+
+<!-- Project 6: Rococo / Vive La Mode -->
+<div class="project-panel" id="project6">
+    <button class="close-panel">✕</button>
+    <h2>Rococo<br>VIVE LA MODE</h2>
+    <div class="panel-book-viewer">
+        <button class="panel-arrow" id="vivaPrev">&#8249;</button>
+        <div class="panel-canvas-wrapper">
+            <canvas id="vivaCanvas"></canvas>
+            <div class="panel-loading" id="vivaLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+        <button class="panel-arrow" id="vivaNext">&#8250;</button>
+    </div>
+    <a href="img/pdfs/viva.pdf" target="_blank" class="pdf-link">
+        <i class="fas fa-file-pdf"></i> View full PDF
+    </a>
+</div>
+
+
+<!-- ============================================================
+     PAGE 5 — Fashion Editorial Trend Forecast (PDF Viewer)
+     The PDF is loaded lazily via IntersectionObserver in JS.
+     Clicking the canvas opens the full PDF in a new tab.
+     The page counter shows current / total pages.
+============================================================ -->
+<section class="page5 fade-section">
+    <img src="img/back5.png" alt="Fashion editorial trend forecast" loading="lazy">
+    <div class="book-viewer">
+        <button class="book-arrow left-arrow" id="prevPage">&#8249;</button>
+        <div class="book-canvas-wrapper">
+            <!-- Clicking the canvas opens the full PDF -->
+            <canvas id="bookCanvas"
+                    onclick="window.open('img/pdfs/page5_pdf.pdf', '_blank');"
+                    style="cursor: pointer;"
+                    title="Click to view full PDF"></canvas>
+            <div class="book-loading" id="bookLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+        <button class="book-arrow right-arrow" id="nextPage">&#8250;</button>
+        <div class="book-page-counter">
+            <span id="currentPage">1</span> / <span id="totalPages">23</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     PAGE 6 — Styling Projects
+     Four buttons that open the corresponding project panels.
+     The h1 title is hidden on mobile via CSS.
+============================================================ -->
+<section class="page6 fade-section">
+    <img src="img/back6.png" alt="Styling projects page" loading="lazy">
+    <h1>Styling projects</h1>
+    <div class="page6-grid">
+        <button class="page6-btn" data-project="project7">MINIMAL</button>
+        <button class="page6-btn" data-project="project8">STREET FASHION:<br>The city as a runway</button>
+        <button class="page6-btn" data-project="project9">BOHO LOOK</button>
+        <button class="page6-btn" data-project="project10">ATHLETIC CHIC:<br>"Spotted"</button>
+    </div>
+</section>
+
+<!-- ============================================================
+     PROJECT PANELS (page6 styling projects)
+============================================================ -->
+
+<!-- Project 7: Minimal -->
+<div class="project-panel" id="project7">
+    <button class="close-panel">✕</button>
+    <h2>Styling: MINIMAL</h2>
+    <div class="panel-book-viewer">
+        <button class="panel-arrow" id="minimalPrev">&#8249;</button>
+        <div class="panel-canvas-wrapper">
+            <canvas id="minimalCanvas"></canvas>
+            <div class="panel-loading" id="minimalLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+        <button class="panel-arrow" id="minimalNext">&#8250;</button>
+    </div>
+    <a href="img/pdfs/minimal.pdf" target="_blank" class="pdf-link">
+        <i class="fas fa-file-pdf"></i> View full PDF
+    </a>
+</div>
+
+<!-- Project 8: Street Fashion -->
+<div class="project-panel" id="project8">
+    <button class="close-panel">✕</button>
+    <h2>Styling:<br>STREET FASHION:<br>The city as a runway</h2>
+    <div class="panel-book-viewer">
+        <button class="panel-arrow" id="streetPrev">&#8249;</button>
+        <div class="panel-canvas-wrapper">
+            <canvas id="streetCanvas"></canvas>
+            <div class="panel-loading" id="streetLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+        <button class="panel-arrow" id="streetNext">&#8250;</button>
+    </div>
+    <a href="img/pdfs/street.pdf" target="_blank" class="pdf-link">
+        <i class="fas fa-file-pdf"></i> View full PDF
+    </a>
+</div>
+
+<!-- Project 9: Boho Look -->
+<div class="project-panel" id="project9">
+    <button class="close-panel">✕</button>
+    <h2>Styling: BOHO LOOK</h2>
+    <div class="panel-book-viewer">
+        <button class="panel-arrow" id="bohoPrev">&#8249;</button>
+        <div class="panel-canvas-wrapper">
+            <canvas id="bohoCanvas"></canvas>
+            <div class="panel-loading" id="bohoLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading...</p>
+            </div>
+        </div>
+        <button class="panel-arrow" id="bohoNext">&#8250;</button>
+    </div>
+    <a href="img/pdfs/boho.pdf" target="_blank" class="pdf-link">
+        <i class="fas fa-file-pdf"></i> View full PDF
+    </a>
+</div>
+
+<!-- Project 10: Athletic Chic (image only, no PDF) -->
+<div class="project-panel" id="project10">
+    <button class="close-panel">✕</button>
+    <h2>Styling: Athletic Chic</h2>
+    <img src="img/athletic.png"
+         alt="Athletic Chic — Spotted styling project"
+         loading="lazy"
+         style="width: min(60%, 500px); margin: 0 auto; display: block; border-radius: 12px;">
+</div>
+
+
+<!-- ============================================================
+     PAGE 7 — Extra Projects
+     Three tabs (Next Generation Fashion, Flapper Reborn,
+     Wild Glam Street Style), each showing a description
+     and a clickable image that opens full size in a new tab.
+     The animated brushstroke background is added via JS
+     lazily when the section becomes visible.
+============================================================ -->
+<section class="page7 fade-section">
+    <div class="page7-content">
+        <h1 class="page7-title">Extra Projects</h1>
+
+        <!-- Tab buttons — data-tab must match the panel id suffix -->
+        <div class="page7-tabs">
+            <button class="page7-tab active" data-tab="gen">
+                Next Generation Fashion
+            </button>
+            <button class="page7-tab" data-tab="flapper">
+                Flapper Reborn
+            </button>
+            <button class="page7-tab" data-tab="wildglam">
+                Wild Glam Street Style
+            </button>
+        </div>
+
+        <!-- Tab panel: Next Generation Fashion -->
+        <div class="page7-panel active" id="tab-gen">
+            <p class="page7-desc">This piece pushes the boundaries of wearable technology, merging futuristic aesthetics with structured design. The integration of luminous LED elements into a precise geometric grid creates a dynamic, high-impact silhouette that transforms fashion into a light-based art form, perfectly capturing the experimental spirit of Next Generation Fashion.</p>
+            <a href="img/gen.png" target="_blank" title="View full image">
+                <img src="img/gen.png" alt="Next Generation Fashion — LED Geometric Bodysuit" class="page7-img">
+            </a>
+        </div>
+
+        <!-- Tab panel: Flapper Reborn -->
+        <div class="page7-panel" id="tab-flapper">
+            <p class="page7-desc">A contemporary reimagining of 1920s glamour, this collection breathes new life into the iconic flapper silhouette. By blending vintage sophistication with a bold, modern edge, "Flapper Reborn" proves that history never looked this bold, offering a daring tribute to the past designed for the confident woman of today.</p>
+            <a href="img/flapper.png" target="_blank" title="View full image">
+                <img src="img/flapper.png" alt="Flapper Reborn fashion illustration" class="page7-img flapper-img">
+            </a>
+        </div>
+
+        <!-- Tab panel: Wild Glam Street Style -->
+        <div class="page7-panel" id="tab-wildglam">
+            <p class="page7-desc">"Wild Glam Street Style" fuses bold streetwear aesthetics with luxurious textures, creating a look that is both edgy and sophisticated. Rich earthy tones, dramatic faux-fur details, and layered accessories bring depth and movement to the design, while the modern silhouette balances confidence with elegance. Inspired by the untamed spirit of urban fashion, this concept celebrates individuality, fearless self-expression, and the seamless blend of glamour with everyday street style.</p>
+            <a href="img/wildglam.png" target="_blank" title="View full image">
+                <img src="img/wildglam.png" alt="Wild Glam Street Style fashion illustration" class="page7-img wildglam-img">
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     LAST PAGE — Contact & Email
+     Contains a contact form (via FormSubmit) and social links.
+     Honeypot field (_honey) prevents spam bots.
+     _captcha is disabled for smoother UX.
+     _next redirects to the thank you page after submission.
+============================================================ -->
+<section class="last-Page-Email fade-section">
+    <img src="img/backEmail-Info.jpg" alt="Contact page" class="last-Image" loading="lazy">
+
+    <!-- Contact form -->
+    <div class="email-me">
+        <form class="contact-form" action="https://formsubmit.co/marialena.zafeiriou@gmail.com" method="POST">
+
+            <!-- Auto-reply sent to the person who contacts -->
+            <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I will get back to you soon.">
+
+            <!-- Subject line of the email received -->
+            <input type="hidden" name="_subject" value="New message from my Portfolio!">
+
+            <!-- Redirect after successful submission -->
+            <input type="hidden" name="_next" value="https://marialenazaf.github.io/marialena-s-Portfolio/thanks.html">
+
+            <!-- Honeypot — hidden field to catch spam bots -->
+            <input type="text" name="_honey" style="display:none">
+
+            <!-- Disable captcha for smoother experience -->
+            <input type="hidden" name="_captcha" value="false">
+
+            <label>
+                <input type="text" name="name" placeholder="Your Name" required>
+            </label>
+            <label>
+                <input type="email" name="email" placeholder="Your Email" required>
+            </label>
+            <label>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            </label>
+            <button type="submit">E-mail me now!</button>
+        </form>
     </div>
 
-    <div class="project-panel" id="project2">
-        <button class="close-panel">✕</button>
-        <h2>Business Casual<br>Office Wear</h2>
-        <div class="panel-book-viewer">
-            <button class="panel-arrow" id="businessPrev">&#8249;</button>
-            <div class="panel-canvas-wrapper">
-                <canvas id="businessCanvas"></canvas>
-                <div class="panel-loading" id="businessLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
-            </div>
-            <button class="panel-arrow" id="businessNext">&#8250;</button>
-        </div>
-        <a href="img/pdfs/business.pdf" target="_blank" class="pdf-link">
-            <i class="fas fa-file-pdf"></i> View full PDF
-        </a>
+    <!-- Social links & CV download -->
+    <div class="contact-me-container">
+        <fieldset class="contact-me-fieldset">
+            <legend class="contact-me-legend">Contact me on Social</legend>
+
+            <a href="https://www.linkedin.com/in/marialena-zafeiriou-9b031b419" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/_m.zafeiriouu_" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=100057139187885" target="_blank" title="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <!-- CV download link -->
+            <a href="img/pdfs/cv-marialena.pdf" target="_blank" title="Download CV">
+                <i class="fas fa-file-alt"></i>
+            </a>
+        </fieldset>
     </div>
-
-    <div class="project-panel" id="project3">
-        <button class="close-panel">✕</button>
-        <h2>Architecture to Fashion</h2>
-        <img src="img/pdfs/..." alt="Project 3">
-        <p>In progress...</p>
-    </div>
-
-    <div class="project-panel" id="project4">
-        <button class="close-panel">✕</button>
-        <h2>BRIGHT AND BOLD<br>CIRCUS</h2>
-        <div class="panel-book-viewer">
-            <button class="panel-arrow" id="circusPrev">&#8249;</button>
-            <div class="panel-canvas-wrapper">
-                <canvas id="circusCanvas"></canvas>
-                <div class="panel-loading" id="circusLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
-            </div>
-            <button class="panel-arrow" id="circusNext">&#8250;</button>
-        </div>
-        <a href="img/pdfs/circus.pdf" target="_blank" class="pdf-link">
-            <i class="fas fa-file-pdf"></i> View full PDF
-        </a>
-    </div>
-
-    <div class="project-panel" id="project5">
-        <button class="close-panel">✕</button>
-        <h2>Modern Looks Greek<br>Roots</h2>
-        <div class="panel-book-viewer">
-            <button class="panel-arrow" id="greekPrev">&#8249;</button>
-            <div class="panel-canvas-wrapper">
-                <canvas id="greekCanvas"></canvas>
-                <div class="panel-loading" id="greekLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
-            </div>
-            <button class="panel-arrow" id="greekNext">&#8250;</button>
-        </div>
-        <a href="img/pdfs/greek.pdf" target="_blank" class="pdf-link">
-            <i class="fas fa-file-pdf"></i> View full PDF
-        </a>
-    </div>
-
-    <div class="project-panel" id="project6">
-        <button class="close-panel">✕</button>
-        <h2>Rococo<br>VIVE LA MODE</h2>
-        <div class="panel-book-viewer">
-            <button class="panel-arrow" id="vivaPrev">&#8249;</button>
-            <div class="panel-canvas-wrapper">
-                <canvas id="vivaCanvas"></canvas>
-                <div class="panel-loading" id="vivaLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
-            </div>
-            <button class="panel-arrow" id="vivaNext">&#8250;</button>
-        </div>
-        <a href="img/pdfs/viva.pdf" target="_blank" class="pdf-link">
-            <i class="fas fa-file-pdf"></i> View full PDF
-        </a>
-    </div>
-
-    <section class="page5">
-        <img src="img/back5.png" alt="Cover">
-        <div class="book-viewer">
-            <button class="book-arrow left-arrow" id="prevPage">&#8249;</button>
-            <div class="book-canvas-wrapper">
-                <canvas id="bookCanvas" onclick="window.open('img/pdfs/page5_pdf.pdf', '_blank');" style="cursor: pointer;" title="view full PDF"></canvas>
-                <div class="book-loading" id="bookLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
-            </div>
-            <button class="book-arrow right-arrow" id="nextPage">&#8250;</button>
-            <div class="book-page-counter">
-                <span id="currentPage">1</span> / <span id="totalPages">23</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="page6">
-        <img src="img/back6.png" alt="Cover">
-        <h1>Styling projects</h1>
-        <div class="page6-grid">
-            <button class="page6-btn" data-project="project7">MINIMAL</button>
-            <button class="page6-btn" data-project="project8">STREET FASHION:<br>The city as a runway</button>
-            <button class="page6-btn" data-project="project9">BOHO LOOK</button>
-            <button class="page6-btn" data-project="project10">ATHLETIC CHIC:<br>"Spotted"</button>
-        </div>
-    </section>
-
-    <div class="project-panel" id="project7">
-        <button class="close-panel">✕</button>
-        <h2>Styling: MINIMAL</h2>
-        <div class="panel-book-viewer">
-            <button class="panel-arrow" id="minimalPrev">&#8249;</button>
-            <div class="panel-canvas-wrapper">
-                <canvas id="minimalCanvas"></canvas>
-                <div class="panel-loading" id="minimalLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
-            </div>
-            <button class="panel-arrow" id="minimalNext">&#8250;</button>
-        </div>
-        <a href="img/pdfs/minimal.pdf" target="_blank" class="pdf-link">
-            <i class="fas fa-file-pdf"></i> View full PDF
-        </a>
-    </div>
-
-    <div class="project-panel" id="project8">
-        <button class="close-panel">✕</button>
-        <h2>Styling:<br>STREET FASHION:<br>The city as a runway</h2>
-        <div class="panel-book-viewer">
-            <button class="panel-arrow" id="streetPrev">&#8249;</button>
-            <div class="panel-canvas-wrapper">
-                <canvas id="streetCanvas"></canvas>
-                <div class="panel-loading" id="streetLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
-            </div>
-            <button class="panel-arrow" id="streetNext">&#8250;</button>
-        </div>
-        <a href="img/pdfs/street.pdf" target="_blank" class="pdf-link">
-            <i class="fas fa-file-pdf"></i> View full PDF
-        </a>
-    </div>
-
-    <div class="project-panel" id="project9">
-        <button class="close-panel">✕</button>
-        <h2>Styling: BOHO LOOK</h2>
-        <div class="panel-book-viewer">
-            <button class="panel-arrow" id="bohoPrev">&#8249;</button>
-            <div class="panel-canvas-wrapper">
-                <canvas id="bohoCanvas"></canvas>
-                <div class="panel-loading" id="bohoLoading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading...</p>
-                </div>
-            </div>
-            <button class="panel-arrow" id="bohoNext">&#8250;</button>
-        </div>
-        <a href="img/pdfs/boho.pdf" target="_blank" class="pdf-link">
-            <i class="fas fa-file-pdf"></i> View full PDF
-        </a>
-    </div>
-
-    <div class="project-panel" id="project10">
-        <button class="close-panel">✕</button>
-        <h2>Styling: Athletic Chic</h2>
-        <img src="img/athletic.png" alt="Athletic Chic" style="width: min(60%, 500px); margin: 0 auto; display: block; border-radius: 12px;">
-    </div>
-
-    <section class="page7">
-        <div class="page7-content">
-            <h1 class="page7-title">Extra Projects</h1>
-
-            <div class="page7-tabs">
-                <button class="page7-tab active" data-tab="gen">
-                    Next Generation Fashion
-                </button>
-                <button class="page7-tab" data-tab="flapper">
-                    Flapper Reborn
-                </button>
-                <button class="page7-tab" data-tab="wildglam">
-                    Wild Glam Street Style
-                </button>
-            </div>
-
-            <div class="page7-panel active" id="tab-gen">
-                <p class="page7-desc">This piece pushes the boundaries of wearable technology, merging futuristic aesthetics with structured design. The integration of luminous LED elements into a precise geometric grid creates a dynamic, high-impact silhouette that transforms fashion into a light-based art form, perfectly capturing the experimental spirit of Next Generation Fashion.</p>
-                <a href="img/gen.png" target="_blank" title="view full image">
-                    <img src="img/gen.png" alt="LED Geometric Bodysuit" class="page7-img">
-                </a>
-            </div>
-
-            <div class="page7-panel" id="tab-flapper">
-                <p class="page7-desc">A contemporary reimagining of 1920s glamour, this collection breathes new life into the iconic flapper silhouette. By blending vintage sophistication with a bold, modern edge, "Flapper Reborn" proves that history never looked this bold, offering a daring tribute to the past designed for the confident woman of today.</p>
-                <a href="img/flapper.png" target="_blank">
-                    <img src="img/flapper.png" alt="Flapper Reborn" class="page7-img flapper-img">
-                </a>
-            </div>
-
-            <div class="page7-panel" id="tab-wildglam">
-                <p class="page7-desc">"Wild Glam Street Style" fuses bold streetwear aesthetics with luxurious textures, creating a look that is both edgy and sophisticated. Rich earthy tones, dramatic faux-fur details, and layered accessories bring depth and movement to the design, while the modern silhouette balances confidence with elegance. Inspired by the untamed spirit of urban fashion, this concept celebrates individuality, fearless self-expression, and the seamless blend of glamour with everyday street style.</p>
-                <a href="img/wildglam.png" target="_blank" title="view full image">
-                    <img src="img/wildglam.png" alt="Wild Glam Street Style" class="page7-img wildglam-img">
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section class="last-Page-Email">
-        <img src="img/backEmail-Info.jpg" alt="Cover" class="last-Image">
-        <div class="email-me">
-            <form class="contact-form" action="https://formsubmit.co/marialena.zafeiriou@gmail.com" method="POST">
-
-                <!-- Αυτόματο reply στον αποστολέα -->
-                <input type="hidden" name="_autoresponse" value="Thank you for contacting me! I will get back to you soon. ✨">
-
-                <!-- Subject του email που θα λαμβάνεις -->
-                <input type="hidden" name="_subject" value="New message from my Portfolio!">
+</section>
 
 
-                <input type="hidden" name="_next" value="https://marialenazaf.github.io/marialena-s-Portfolio/thanks.html">
+<!-- ============================================================
+     SCRIPTS
+     PDF.js must be loaded before index.js since index.js
+     uses pdfjsLib immediately on load.
+============================================================ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="index.js"></script>
 
-                <label>
-                    <input type="text" name="name" placeholder="Your Name" required>
-                </label>
-                <label>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </label>
-                <label>
-                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                </label>
-                <button type="submit">E-mail me now!</button>
-                <label>
-                    <input type="text" name="_honey" style="display:none">
-                </label>
-                <input type="hidden" name="_captcha" value="false">
-            </form>
-        </div>
-        <div class="contact-me-container">
-            <fieldset class="contact-me-fieldset">
-                <legend class="contact-me-legend">Contact me on Social</legend>
-                <a href="https://www.linkedin.com/in/marialena-zafeiriou-9b031b419?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-
-                <a href="https://www.instagram.com/_.inelll._?utm_source=qr&igsh=MXFiajEzZWpvMnc0MQ==" target="_blank" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-                <a href="https://www.facebook.com/profile.php?id=100057139187885&locale=el_GR" target="_blank" title="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <!--CV added-->
-                <a href="img/pdfs/cv-marialena.pdf" target="_blank" title="Βιογραφικό/CV">
-                    <i class="fas fa-file-alt"></i>
-                </a>
-            </fieldset>
-        </div>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="index.js"></script>
 </body>
 </html>
